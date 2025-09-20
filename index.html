@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>眾享亞洲</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/all.css" />
+    <link rel="stylesheet" href="css/rwd.css" />
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+    </style>
+  </head>
+  <body>
+    <!--手機版選單遮罩-->
+    <div class="mobile-menu-overlay">
+      <div class="mobile-menu">
+        <div class="close-icon">
+          <span class="material-symbols-outlined">arrow_back_ios</span>
+        </div>
+        <nav class="mobile-nav-list">
+          <a href="#">旅遊</a>
+          <a href="#">訂房</a>
+          <a href="#">桑拿</a>
+          <a href="#">服務介紹</a>
+          <a href="#">FAQ</a>
+          <a href="#">專人客服</a>
+        </nav>
+      </div>
+    </div>
+
+    <!--手機版置底選單-->
+    <nav class="mobile-navbar">
+      <a href="#" class="gradient-font-icon">
+        <span class="material-symbols-outlined"> hotel </span>訂房
+      </a>
+      <a href="#"> <span class="material-symbols-outlined"> travel_luggage_and_bags </span>旅遊 </a>
+      <a href="#"> <span class="material-symbols-outlined"> directions_car </span>包車</a>
+      <a href="#"> <span class="material-symbols-outlined"> concierge </span> 專人服務 </a>
+    </nav>
+
+    <header class="desktop-header rwd-wrapper">
+      <div class="header-content">
+        <div class="logo">
+          <img src="images/logo-all.png" alt="Logo" width="180" height="auto" />
+        </div>
+        <div class="search-box">
+          <input type="text" placeholder="熱門餐廳、節慶活動、咖啡店......" />
+          <button type="button" class="search-btn">
+            <span class="material-symbols-outlined gradient-font-icon">search</span>
+          </button>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <a href="#">旅遊</a>
+        <a href="#">訂房</a>
+        <a href="#">桑拿</a>
+        <a href="#">服務介紹</a>
+        <a href="#">FAQ</a>
+        <a href="#">專人客服</a>
+      </nav>
+    </header>
+
+    <header class="mobile-header rwd-wrapper">
+      <div class="logo">
+        <img src="images/logo.svg" alt="Logo" width="auto" height="30" />
+      </div>
+      <div class="search-box">
+        <input type="text" placeholder="熱門餐廳、節慶活動、咖啡店......" />
+        <button type="button" class="search-btn">
+          <span class="material-symbols-outlined gradient-font-icon">search</span>
+        </button>
+      </div>
+      <div class="menu-icon js-menu-toggle">
+        <img src="images/menu-toggle.svg" alt="主選單切換" width="auto" height="26" />
+      </div>
+    </header>
+
+    <div class="stretchy-container rwd-wrapper">
+      <main class="main-content">
+        <section class="banner"></section>
+
+        <section class="popular-articles">
+          <h2>人氣精選活動</h2>
+          <div class="article-list"></div>
+          <div class="view-all">
+            <a href="#">查看更多 ></a>
+          </div>
+        </section>
+
+        <section class="about-us"></section>
+
+        <section class="featured-articles">
+          <h2>最新資訊</h2>
+          <div class="article-list"></div>
+          <div class="view-all">
+            <a href="#">查看更多 ></a>
+          </div>
+        </section>
+
+        <section class="latest-articles">
+          <h2>大家都在看</h2>
+          <div class="article-list"></div>
+          <div class="view-all">
+            <a href="#">查看更多 ></a>
+          </div>
+        </section>
+
+        <section class="suggested-articles">
+          <h2>你可能也有興趣</h2>
+          <div class="article-list"></div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <hr class="divider" />
+
+        <div class="footer-container">
+          <div class="footer-top">
+            <div class="footer-section">
+              <h4>認識眾享亞洲</h4>
+              <ul class="footer-links">
+                <li><a href="#">關於我們</a></li>
+                <li><a href="#">加入我們</a></li>
+                <li><a href="#">子項目標題</a></li>
+              </ul>
+            </div>
+            <div class="footer-section">
+              <h4>其他項目</h4>
+              <ul class="footer-links">
+                <li><a href="#">子項目標題</a></li>
+                <li><a href="#">子項目標題</a></li>
+                <li><a href="#">子項目標題</a></li>
+              </ul>
+            </div>
+            <div class="footer-section">
+              <h4>其他項目</h4>
+              <ul class="footer-links">
+                <li><a href="#">子項目標題</a></li>
+                <li><a href="#">子項目標題</a></li>
+                <li><a href="#">子項目標題</a></li>
+              </ul>
+            </div>
+            <div class="footer-section">
+              <h4>其他項目</h4>
+              <ul class="footer-links">
+                <li><a href="#">子項目標題</a></li>
+                <li><a href="#">子項目標題</a></li>
+                <li><a href="#">子項目標題</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="footer-middle">
+            <div class="payment-section">
+              <h4 class="payment-title">付款方式</h4>
+              <div class="payment-icons">
+                <img src="images/payment/visa.svg" alt="VISA" />
+                <img src="images/payment/mastercard.svg" alt="MasterCard" />
+                <img src="images/payment/jcb.svg" alt="JCB" />
+                <img src="images/payment/amex.svg" alt="Amex" />
+                <img src="images/payment/diners-club.svg" alt="Diners Club" />
+                <img src="images/payment/discover.svg" alt="Discover" />
+                <img src="images/payment/union-pay.png" alt="UnionPay" />
+                <img src="images/payment/apple-pay.svg" alt="Apple Pay" />
+                <img src="images/payment/google-pay.svg" alt="Google Pay" />
+              </div>
+            </div>
+            <div class="social-icons">
+              <a href="#"><img src="images/social/line.svg" alt="Line" /></a>
+              <a href="#"><img src="images/social/facebook.svg" alt="Facebook" /></a>
+              <a href="#"><img src="images/social/instagram.svg" alt="Instagram" /></a>
+              <a href="#"><img src="images/social/threads.svg" alt="threads" /></a>
+            </div>
+          </div>
+
+          <hr class="divider" />
+
+          <div class="footer-bottom">
+            <p>&copy; 2025 眾享亞洲. All Rights Reserved.</p>
+            <p>公司品牌文字資訊、電子郵件、統一編號、公司地址、聯絡電話</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="js/all.js"></script>
+  </body>
+</html>

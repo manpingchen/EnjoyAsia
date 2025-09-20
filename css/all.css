@@ -1,0 +1,125 @@
+/* --------------------------------------
+    基本樣式與變數
+-------------------------------------- */
+:root {
+  --max-content-width-lg: 1220px;
+  --max-content-width-md: 960px;
+
+  /* 主要色系 */
+  --primary-color: #b49b50;
+  --secondary-color: #c08b6a;
+  --tertiary-color: #333333;
+  --primary-color-lighter: #c8af64;
+  --primary-color-lightest: #f9efce;
+
+  /* 背景色系 */
+  --badge-background: #fff9e6;
+
+  /* 灰階色系 */
+  --gray-100: #f8f9fa;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-400: #ced4da;
+  --gray-500: #bababa;
+  --gray-600: #6c757d;
+  --gray-700: #495057;
+  --gray-800: #343a40;
+  --gray-900: #212529;
+
+  /* 卡片參數 */
+  --border-radius: 10px;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  /* 選單尺寸 */
+  --header-height: 60px;
+  --mobile-nav-height: 80px;
+}
+
+/* Footer 置底佈局 */
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  flex-shrink: 0;
+}
+
+.stretchy-container {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  width: 100%;
+  height: calc(100vh - var(--header-height) - var(--mobile-nav-height));
+}
+
+main,
+footer {
+  flex-shrink: 0;
+}
+
+main {
+  flex-grow: 1;
+}
+
+.rwd-wrapper {
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* --------------------------------------
+    Google Icon 設定
+-------------------------------------- */
+.material-symbols-outlined {
+  font-size: 24px;
+}
+
+.gradient-font-icon {
+  background: linear-gradient(
+    45deg,
+    var(--primary-color),
+    var(--primary-color-lighter),
+    var(--primary-color-lightest)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* --------------------------------------
+   搜尋 Bar
+-------------------------------------- */
+.search-box {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  border-bottom: 1px solid var(--primary-color);
+  max-width: 320px;
+  position: relative;
+  top: -5px;
+}
+
+.search-box input {
+  border: none;
+  flex-grow: 1;
+  font-size: 0.875rem; /* 14px */
+  color: var(--gray-600);
+  outline: none;
+  padding: 0.5rem 0;
+  width: 80%;
+}
+
+.search-box input::placeholder {
+  color: var(--gray-500);
+}
+
+.search-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
