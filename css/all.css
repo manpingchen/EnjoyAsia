@@ -8,9 +8,10 @@
   /* 主要色系 */
   --primary-color: #b49b50;
   --secondary-color: #c08b6a;
-  --tertiary-color: #333333;
   --primary-color-lighter: #c8af64;
   --primary-color-lightest: #f9efce;
+  --secondary-color-darkest: #9c6230;
+  --secondary-color-darker: #c57a3a;
 
   /* 背景色系 */
   --badge-background: #fff9e6;
@@ -122,4 +123,95 @@ main {
   padding: 0;
   display: flex;
   align-items: center;
+}
+/* --------------------------------------
+    首頁
+-------------------------------------- */
+ul.hot-searches-list {
+  display: none;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+
+ul.hot-searches-list li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner {
+  display: none;
+  width: 100%;
+  position: relative;
+  height: 240px;
+  margin-bottom: 1rem;
+}
+
+.banner img.search-bg {
+  object-fit: cover;
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  z-index: -1;
+}
+
+.banner .search {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.banner .search-box {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 50%;
+  min-width: 450px;
+  overflow: hidden;
+  box-shadow: none;
+  height: 50px;
+}
+
+.banner .gradient-border {
+  width: 5px;
+  background: linear-gradient(
+    to top,
+    var(--secondary-color-darker),
+    var(--secondary-color-darkest)
+  );
+}
+
+.banner .search-box input {
+  flex: 1;
+  padding: 0 15px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #333;
+}
+
+.banner .search-btn {
+  background: linear-gradient(
+    to right,
+    var(--secondary-color-darker),
+    var(--secondary-color-darkest)
+  );
+  border: none;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.banner .search-btn .material-symbols-outlined {
+  color: white;
+}
+
+.articles {
 }

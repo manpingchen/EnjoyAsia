@@ -67,6 +67,31 @@
       </nav>
     </header>
 
+    <!--桌面版熱門搜尋-->
+    <div class="hot-searches rwd-wrapper">
+      <ul class="hot-searches-list">
+        <li><span class="material-symbols-outlined gradient-font-icon">search</span>熱門服務</li>
+        <li><span class="material-symbols-outlined gradient-font-icon">search</span>熱門餐廳</li>
+        <li><span class="material-symbols-outlined gradient-font-icon">search</span>熱門城市</li>
+        <li><span class="material-symbols-outlined gradient-font-icon">search</span>熱門機票</li>
+        <li><span class="material-symbols-outlined gradient-font-icon">search</span>熱門酒吧</li>
+      </ul>
+    </div>
+
+    <!--桌面版 Banner搜尋區-->
+    <section class="banner">
+      <div class="search rwd-wrapper">
+        <div class="search-box">
+          <span class="gradient-border"></span>
+          <input type="text" placeholder="搜尋下一個目的地, 如，首爾、東京、曼谷" />
+          <button type="button" class="search-btn">
+            <span class="material-symbols-outlined">search</span>
+          </button>
+        </div>
+      </div>
+      <img src="images/search-bg.png" alt="搜尋背景圖" class="search-bg" />
+    </section>
+
     <header class="mobile-header rwd-wrapper">
       <div class="logo">
         <img src="images/logo.svg" alt="Logo" width="auto" height="30" />
@@ -84,9 +109,7 @@
 
     <div class="stretchy-container rwd-wrapper">
       <main class="main-content">
-        <section class="banner"></section>
-
-        <section class="popular-articles">
+        <section class="popular-articles articles">
           <h2>人氣精選活動</h2>
           <div class="article-list"></div>
           <div class="view-all">
@@ -96,7 +119,7 @@
 
         <section class="about-us"></section>
 
-        <section class="featured-articles">
+        <section class="featured-articles articles">
           <h2>最新資訊</h2>
           <div class="article-list"></div>
           <div class="view-all">
@@ -104,7 +127,7 @@
           </div>
         </section>
 
-        <section class="latest-articles">
+        <section class="latest-articles articles">
           <h2>大家都在看</h2>
           <div class="article-list"></div>
           <div class="view-all">
@@ -112,7 +135,7 @@
           </div>
         </section>
 
-        <section class="suggested-articles">
+        <section class="suggested-articles articles">
           <h2>你可能也有興趣</h2>
           <div class="article-list"></div>
         </section>

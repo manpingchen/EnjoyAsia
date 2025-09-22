@@ -326,3 +326,16 @@ body.menu-open {
     height: calc(100vh - var(--header-height));
   }
 }
+
+/* --------------------------------------
+    首頁
+-------------------------------------- */
+@media (min-width: 992px) {
+  ul.hot-searches-list {
+    display: flex;
+  }
+
+  .banner {
+    display: flex;
+  }
+}
