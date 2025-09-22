@@ -18,7 +18,7 @@
     </style>
   </head>
   <body>
-    <!--手機版選單遮罩-->
+    <!--手機版 選單遮罩-->
     <div class="mobile-menu-overlay">
       <div class="mobile-menu">
         <div class="close-icon">
@@ -35,7 +35,7 @@
       </div>
     </div>
 
-    <!--手機版置底選單-->
+    <!--手機版 置底選單-->
     <nav class="mobile-navbar">
       <a href="#" class="gradient-font-icon">
         <span class="material-symbols-outlined"> hotel </span>訂房
@@ -45,6 +45,23 @@
       <a href="#"> <span class="material-symbols-outlined"> concierge </span> 專人服務 </a>
     </nav>
 
+    <!--手機版 Header-->
+    <header class="mobile-header rwd-wrapper">
+      <div class="logo">
+        <img src="images/logo.svg" alt="Logo" width="auto" height="30" />
+      </div>
+      <div class="search-box">
+        <input type="text" placeholder="熱門餐廳、節慶活動、咖啡店......" />
+        <button type="button" class="search-btn">
+          <span class="material-symbols-outlined gradient-font-icon">search</span>
+        </button>
+      </div>
+      <div class="menu-icon js-menu-toggle">
+        <img src="images/menu-toggle.svg" alt="主選單切換" width="auto" height="26" />
+      </div>
+    </header>
+
+    <!--桌面版 Header-->
     <header class="desktop-header rwd-wrapper">
       <div class="header-content">
         <div class="logo">
@@ -67,32 +84,38 @@
       </nav>
     </header>
 
-    <!--桌面版熱門搜尋-->
+    <!--桌面版 熱門搜尋-->
     <div class="hot-searches rwd-wrapper">
       <ul class="hot-searches-list">
-        <li><span class="material-symbols-outlined gradient-font-icon">search</span>熱門服務</li>
-        <li><span class="material-symbols-outlined gradient-font-icon">search</span>熱門餐廳</li>
-        <li><span class="material-symbols-outlined gradient-font-icon">search</span>熱門城市</li>
-        <li><span class="material-symbols-outlined gradient-font-icon">search</span>熱門機票</li>
-        <li><span class="material-symbols-outlined gradient-font-icon">search</span>熱門酒吧</li>
+        <li>
+          <a href="articles.html">
+            <span class="material-symbols-outlined gradient-font-icon">search</span>熱門服務
+          </a>
+        </li>
+        <li>
+          <a href="articles.html">
+            <span class="material-symbols-outlined gradient-font-icon">search</span>熱門餐廳
+          </a>
+        </li>
+        <li>
+          <a href="articles.html">
+            <span class="material-symbols-outlined gradient-font-icon">search</span>熱門城市
+          </a>
+        </li>
+        <li>
+          <a href="articles.html">
+            <span class="material-symbols-outlined gradient-font-icon">search</span>熱門機票
+          </a>
+        </li>
+        <li>
+          <a href="articles.html">
+            <span class="material-symbols-outlined gradient-font-icon">search</span>熱門酒吧
+          </a>
+        </li>
       </ul>
     </div>
 
-    <header class="mobile-header rwd-wrapper">
-      <div class="logo">
-        <img src="images/logo.svg" alt="Logo" width="auto" height="30" />
-      </div>
-      <div class="search-box">
-        <input type="text" placeholder="熱門餐廳、節慶活動、咖啡店......" />
-        <button type="button" class="search-btn">
-          <span class="material-symbols-outlined gradient-font-icon">search</span>
-        </button>
-      </div>
-      <div class="menu-icon js-menu-toggle">
-        <img src="images/menu-toggle.svg" alt="主選單切換" width="auto" height="26" />
-      </div>
-    </header>
-
+    <!--網頁主內容-->
     <div class="stretchy-container">
       <!--桌面版 Banner搜尋區-->
       <section class="banner">
@@ -109,7 +132,7 @@
       </section>
 
       <main class="main-content rwd-wrapper">
-        <section class="popular-articles articles">
+        <section class="articles">
           <div class="article-list-header">
             <h2>人氣精選活動</h2>
             <ul class="scroll">
@@ -117,13 +140,13 @@
               <li><span class="material-symbols-outlined">chevron_right</span></li>
             </ul>
           </div>
-          <div class="article-list">
+          <div class="slide-article-list article-list">
             <!-- 卡片 1 -->
-            <div class="article-card">
-              <img src="images/image1.png" alt="精選活動" />
+            <a href="article.html" class="article-card">
+              <img src="images/articles/3.png" alt="精選活動" />
               <div class="info">
                 <p class="location">日本 · 東京</p>
-                <h3>精選活動名稱精選活動名稱</h3>
+                <h3>小巷裡的咖啡店，咖啡師從地球遠方帶來的五杯咖啡！</h3>
                 <div class="discount-tags">
                   <span>買一送一</span>
                   <span>全程接駁</span>
@@ -136,13 +159,13 @@
                 <p class="crossed-price price">NT 1,680</p>
                 <p class="discount"><span class="badge">早鳥優惠</span>享35%折</p>
               </div>
-            </div>
+            </a>
             <!-- 卡片 2 -->
-            <div class="article-card">
-              <img src="images/image1.png" alt="精選活動" />
+            <a href="article.html" class="article-card">
+              <img src="images/articles/2.png" alt="精選活動" />
               <div class="info">
                 <p class="location">韓國 · 首爾</p>
-                <h3>精選活動名稱精選活動名稱</h3>
+                <h3>不只峇里島！絕美夕陽的藍夢島私房景點，跳島之旅升級！</h3>
                 <div class="discount-tags">
                   <span>買一送一</span>
                   <span>全程接駁</span>
@@ -154,10 +177,10 @@
                 <p class="join">加入官方Line取得更優惠價格</p>
                 <p class="crossed-price price">NT 1,680</p>
               </div>
-            </div>
+            </a>
             <!-- 卡片 3 -->
-            <div class="article-card">
-              <img src="images/image1.png" alt="精選活動" />
+            <a href="article.html" class="article-card">
+              <img src="images/articles/4.png" alt="精選活動" />
               <div class="info">
                 <p class="location">韓國 · 首爾</p>
                 <h3>精選活動名稱精選活動名稱</h3>
@@ -172,13 +195,13 @@
                 <p class="join">加入官方Line取得更優惠價格</p>
                 <p class="crossed-price price">NT 1,680</p>
               </div>
-            </div>
+            </a>
             <!-- 卡片 4 -->
-            <div class="article-card">
-              <img src="images/image1.png" alt="精選活動" />
+            <a href="article.html" class="article-card">
+              <img src="images/articles/1.png" alt="精選活動" />
               <div class="info">
                 <p class="location">韓國 · 首爾</p>
-                <h3>精選活動名稱精選活動名稱</h3>
+                <h3>泰國10間餐廳！飛12小時也願意！</h3>
                 <div class="discount-tags">
                   <span>買一送一</span>
                   <span>全程接駁</span>
@@ -190,13 +213,13 @@
                 <p class="join">加入官方Line取得更優惠價格</p>
                 <p class="crossed-price price">NT 1,680</p>
               </div>
-            </div>
+            </a>
             <!-- 卡片 5 -->
-            <div class="article-card">
-              <img src="images/image1.png" alt="精選活動" />
+            <a href="article.html" class="article-card">
+              <img src="images/articles/1.png" alt="精選活動" />
               <div class="info">
                 <p class="location">台灣 · 台北</p>
-                <h3>精選活動名稱精選活動名稱</h3>
+                <h3>小巷裡的咖啡店，咖啡師從地球遠方帶來的五杯咖啡！</h3>
                 <div class="discount-tags">
                   <span>買一送一</span>
                   <span>全程接駁</span>
@@ -208,107 +231,413 @@
                 <p class="join">加入官方Line取得更優惠價格</p>
                 <p class="crossed-price price">NT 1,680</p>
               </div>
-            </div>
+            </a>
           </div>
         </section>
 
         <section class="about-us"></section>
 
-        <section class="featured-articles articles">
+        <section class="articles">
           <h2>最新資訊</h2>
-          <div class="article-list">
+          <div class="grid-article-list article-list">
             <!-- 卡片 1 -->
-            <div class="article-card">
-              <img src="images/image1.png" alt="精選活動" />
+            <a href="article.html" class="article-card">
+              <img src="images/articles/5.png" alt="精選活動" />
               <div class="info">
-                <p class="location">日本 · 東京</p>
-                <h3>精選活動名稱精選活動名稱</h3>
+                <p class="published-date">2025/12/01</p>
+                <h3>連韓國人都搶著去，濟州島韓法混血小店！</h3>
                 <div class="article-tags">
-                  <span>買一送一</span>
-                  <span>全程接駁</span>
+                  <span>韓國</span>
+                  <span>東北亞</span>
+                  <span>美食</span>
                 </div>
                 <p class="description">
-                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文，熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文。
                 </p>
               </div>
-            </div>
+            </a>
             <!-- 卡片 2 -->
-            <div class="article-card">
-              <img src="images/image1.png" alt="精選活動" />
+            <a href="article.html" class="article-card">
+              <img src="images/articles/3.png" alt="精選活動" />
               <div class="info">
-                <p class="location">韓國 · 首爾</p>
-                <h3>精選活動名稱精選活動名稱</h3>
+                <p class="published-date">2025/12/01</p>
+                <h3>小巷裡的咖啡店，咖啡師從地球遠方帶來的五杯咖啡！</h3>
                 <div class="article-tags">
-                  <span>買一送一</span>
-                  <span>全程接駁</span>
+                  <span>咖啡店</span>
+                  <span>日本</span>
+                  <span>在地小店</span>
                 </div>
                 <p class="description">
-                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文，熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文。
                 </p>
               </div>
-            </div>
+            </a>
             <!-- 卡片 3 -->
-            <div class="article-card">
-              <img src="images/image1.png" alt="精選活動" />
+            <a href="article.html" class="article-card">
+              <img src="images/articles/2.png" alt="精選活動" />
               <div class="info">
-                <p class="location">韓國 · 首爾</p>
-                <h3>精選活動名稱精選活動名稱</h3>
+                <p class="published-date">2025/12/01</p>
+                <h3>連韓國人都搶著去，濟州島韓法混血小店！</h3>
                 <div class="article-tags">
-                  <span>買一送一</span>
-                  <span>全程接駁</span>
+                  <span>文章標籤</span>
+                  <span>文章標籤</span>
+                  <span>文章標籤</span>
                 </div>
                 <p class="description">
-                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文，熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文。
                 </p>
               </div>
-            </div>
+            </a>
             <!-- 卡片 4 -->
-            <div class="article-card">
-              <img src="images/image1.png" alt="精選活動" />
+            <a href="article.html" class="article-card">
+              <img src="images/articles/4.png" alt="精選活動" />
               <div class="info">
-                <p class="location">韓國 · 首爾</p>
-                <h3>精選活動名稱精選活動名稱</h3>
+                <p class="published-date">2025/12/01</p>
+                <h3>淺草爺奶私房五間小吃店！</h3>
                 <div class="article-tags">
-                  <span>買一送一</span>
-                  <span>全程接駁</span>
+                  <span>日本</span>
+                  <span>在地小店</span> <span>文章標籤</span>
                 </div>
                 <p class="description">
-                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文，熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文。
                 </p>
               </div>
-            </div>
+            </a>
             <!-- 卡片 5 -->
-            <div class="article-card">
-              <img src="images/image1.png" alt="精選活動" />
+            <a href="article.html" class="article-card">
+              <img src="images/articles/3.png" alt="精選活動" />
               <div class="info">
-                <p class="location">台灣 · 台北</p>
+                <p class="published-date">2025/12/01</p>
                 <h3>精選活動名稱精選活動名稱</h3>
                 <div class="article-tags">
-                  <span>買一送一</span>
-                  <span>全程接駁</span>
+                  <span>創意小店</span>
+                  <span>酒吧</span>
+                  <span>深夜行程</span>
+                </div>
+                <p class="description">
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文，熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文。
+                </p>
+              </div>
+            </a>
+            <!-- 卡片 6 -->
+            <a href="article.html" class="article-card">
+              <img src="images/articles/1.png" alt="精選活動" />
+              <div class="info">
+                <p class="published-date">2025/12/01</p>
+                <h3>不只峇里島！絕美夕陽的藍夢島私房景點，跳島之旅升級！</h3>
+                <div class="article-tags">
+                  <span>海島</span>
+                  <span>在地旅遊</span>
+                  <span>跳島</span>
                 </div>
                 <p class="description">
                   熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文
                 </p>
               </div>
-            </div>
+            </a>
+            <!-- 卡片 7 -->
+            <a href="article.html" class="article-card">
+              <img src="images/articles/3.png" alt="精選活動" />
+              <div class="info">
+                <p class="published-date">2025/12/01</p>
+                <h3>奢華溫暖度聖誕，東南亞郵輪行早鳥開始！</h3>
+                <div class="article-tags">
+                  <span>文章標籤</span>
+                  <span>文章標籤</span>
+                  <span>文章標籤</span>
+                </div>
+                <p class="description">
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文，熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文。
+                </p>
+              </div>
+            </a>
+            <!-- 卡片 8 -->
+            <a href="article.html" class="article-card">
+              <img src="images/articles/5.png" alt="精選活動" />
+              <div class="info">
+                <p class="published-date">2025/12/01</p>
+                <h3>精選活動名稱精選活動名稱</h3>
+                <div class="article-tags">
+                  <span>文章標籤</span>
+                  <span>文章標籤</span>
+                  <span>文章標籤</span>
+                </div>
+                <p class="description">
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文，熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文。
+                </p>
+              </div>
+            </a>
           </div>
           <div class="view-all">
-            <a href="#">查看更多 ></a>
+            <a href="#">查看更多<span class="material-symbols-outlined">chevron_right</span></a>
           </div>
         </section>
 
-        <section class="latest-articles articles">
+        <section class="articles">
           <h2>大家都在看</h2>
-          <div class="article-list"></div>
+          <div class="grid-article-list article-list">
+            <!-- 卡片 1 -->
+            <a href="article.html" class="article-card">
+              <img src="images/articles/1.png" alt="精選活動" />
+              <div class="info">
+                <p class="views-count">
+                  <span class="material-symbols-outlined"> visibility </span>
+                  12K
+                </p>
+                <h3>精選活動名稱精選活動名稱</h3>
+                <div class="article-tags">
+                  <span>買一送一</span>
+                  <span>全程接駁</span>
+                </div>
+                <p class="description">
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文，熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文。
+                </p>
+              </div>
+            </a>
+            <!-- 卡片 2 -->
+            <a href="article.html" class="article-card">
+              <img src="images/articles/2.png" alt="精選活動" />
+              <div class="info">
+                <p class="views-count">
+                  <span class="material-symbols-outlined"> visibility </span>
+                  12K
+                </p>
+                <h3>深夜食堂3.0，日本單身者最享受的美食去處！</h3>
+                <div class="article-tags">
+                  <span>文章標籤</span> <span>文章標籤</span> <span>文章標籤</span>
+                </div>
+                <p class="description">
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文，熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文。
+                </p>
+              </div>
+            </a>
+            <!-- 卡片 3 -->
+            <a href="article.html" class="article-card">
+              <img src="images/articles/1.png" alt="精選活動" />
+              <div class="info">
+                <p class="views-count">
+                  <span class="material-symbols-outlined"> visibility </span>
+                  12K
+                </p>
+                <h3>精選活動名稱精選活動名稱</h3>
+                <div class="article-tags">
+                  <span>文章標籤</span>
+                  <span>文章標籤</span>
+                  <span>文章標籤</span>
+                </div>
+                <p class="description">
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文，熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文。
+                </p>
+              </div>
+            </a>
+            <!-- 卡片 4 -->
+            <a href="article.html" class="article-card">
+              <img src="images/articles/3.png" alt="精選活動" />
+              <div class="info">
+                <p class="views-count">
+                  <span class="material-symbols-outlined"> visibility </span>
+                  12K
+                </p>
+                <h3>精選活動名稱精選活動名稱</h3>
+                <div class="article-tags">
+                  <span>文章標籤</span>
+                  <span>文章標籤</span>
+                  <span>文章標籤</span>
+                </div>
+                <p class="description">
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文，熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文。
+                </p>
+              </div>
+            </a>
+            <!-- 卡片 5 -->
+            <a href="article.html" class="article-card">
+              <img src="images/articles/4.png" alt="精選活動" />
+              <div class="info">
+                <p class="views-count">
+                  <span class="material-symbols-outlined"> visibility </span>
+                  12K
+                </p>
+                <h3>深夜食堂3.0，日本單身者最享受的美食去處！</h3>
+                <div class="article-tags">
+                  <span>文章標籤</span>
+                  <span>文章標籤</span>
+                  <span>文章標籤</span>
+                </div>
+                <p class="description">
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文，熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文。
+                </p>
+              </div>
+            </a>
+            <!-- 卡片 6 -->
+            <a href="article.html" class="article-card">
+              <img src="images/articles/5.png" alt="精選活動" />
+              <div class="info">
+                <p class="views-count">
+                  <span class="material-symbols-outlined"> visibility </span>
+                  12K
+                </p>
+                <h3>精選活動名稱精選活動名稱</h3>
+                <div class="article-tags">
+                  <span>文章標籤</span>
+                  <span>文章標籤</span>
+                  <span>文章標籤</span>
+                </div>
+                <p class="description">
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文，熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文。
+                </p>
+              </div>
+            </a>
+            <!-- 卡片 7 -->
+            <a href="article.html" class="article-card">
+              <img src="images/articles/1.png" alt="精選活動" />
+              <div class="info">
+                <p class="views-count">
+                  <span class="material-symbols-outlined"> visibility </span>
+                  12K
+                </p>
+                <h3>連在地人也找不到！韓國隱藏神秘小店，只有這天開</h3>
+                <div class="article-tags">
+                  <span>文章標籤</span>
+                  <span>文章標籤</span>
+                  <span>文章標籤</span>
+                </div>
+                <p class="description">
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文，熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文。
+                </p>
+              </div>
+            </a>
+            <!-- 卡片 8 -->
+            <a href="article.html" class="article-card">
+              <img src="images/articles/4.png" alt="精選活動" />
+              <div class="info">
+                <p class="views-count">
+                  <span class="material-symbols-outlined"> visibility </span>
+                  12K
+                </p>
+                <h3>連在地人也找不到！韓國隱藏神秘小店，只有這天開！</h3>
+                <div class="article-tags">
+                  <span>文章標籤</span>
+                  <span>文章標籤</span>
+                  <span>文章標籤</span>
+                </div>
+                <p class="description">
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文，熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文。
+                </p>
+              </div>
+            </a>
+          </div>
           <div class="view-all">
-            <a href="#">查看更多 ></a>
+            <a href="#">查看更多<span class="material-symbols-outlined">chevron_right</span></a>
           </div>
         </section>
 
         <section class="suggested-articles articles">
-          <h2>你可能也有興趣</h2>
-          <div class="article-list"></div>
+          <div class="article-list-header">
+            <h2>你可能也有興趣</h2>
+            <ul class="scroll">
+              <li><span class="material-symbols-outlined">chevron_left</span></li>
+              <li><span class="material-symbols-outlined">chevron_right</span></li>
+            </ul>
+          </div>
+          <div class="slide-article-list article-list">
+            <!-- 卡片 1 -->
+            <a href="article.html" class="article-card">
+              <img src="images/articles/1.png" alt="精選活動" />
+              <div class="info">
+                <p class="published-date">2025/12/01</p>
+                <h3>韓國大人的甜點，威士忌布蕾！六種大人才懂的甜點！</h3>
+                <div class="article-tags">
+                  <span>美食</span>
+                  <span>甜點</span>
+                  <span>在地小店</span>
+                </div>
+                <p class="description">
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文，熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文。
+                </p>
+              </div>
+            </a>
+            <!-- 卡片 2 -->
+            <a href="article.html" class="article-card">
+              <img src="images/articles/3.png" alt="精選活動" />
+              <div class="info">
+                <p class="published-date">2025/12/01</p>
+                <h3>日本養生人最愛的十間甜點店！</h3>
+                <div class="article-tags">
+                  <span>文章標籤</span>
+                  <span>文章標籤</span>
+                  <span>文章標籤</span>
+                </div>
+                <p class="description">
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文，熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文。
+                </p>
+              </div>
+            </a>
+            <!-- 卡片 3 -->
+            <a href="article.html" class="article-card">
+              <img src="images/articles/5.png" alt="精選活動" />
+              <div class="info">
+                <p class="published-date">2025/12/01</p>
+                <h3>奢華溫暖度聖誕，東南亞郵輪行早鳥開始！</h3>
+                <div class="article-tags">
+                  <span>東南亞</span>
+                  <span>海島</span>
+                  <span>郵輪</span>
+                </div>
+                <p class="description">
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文，熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文。
+                </p>
+              </div>
+            </a>
+
+            <!-- 卡片 4 -->
+            <a href="article.html" class="article-card">
+              <img src="images/articles/3.png" alt="精選活動" />
+              <div class="info">
+                <p class="published-date">2025/12/01</p>
+                <h3>日本養生人最愛的十間甜點店！</h3>
+                <div class="article-tags">
+                  <span>文章標籤</span>
+                  <span>文章標籤</span>
+                  <span>文章標籤</span>
+                </div>
+                <p class="description">
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文，熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文。
+                </p>
+              </div>
+            </a>
+            <!-- 卡片 5 -->
+            <a href="article.html" class="article-card">
+              <img src="images/articles/1.png" alt="精選活動" />
+              <div class="info">
+                <p class="published-date">2025/12/01</p>
+                <h3>韓國大人的甜點，威士忌布蕾！六種大人才懂的甜點！</h3>
+                <div class="article-tags">
+                  <span>美食</span>
+                  <span>甜點</span>
+                  <span>在地小店</span>
+                </div>
+                <p class="description">
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文，熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文。
+                </p>
+              </div>
+            </a>
+            <!-- 卡片 6 -->
+            <a href="article.html" class="article-card">
+              <img src="images/articles/2.png" alt="精選活動" />
+              <div class="info">
+                <p class="published-date">2025/12/01</p>
+                <h3>奢華溫暖度聖誕，東南亞郵輪行早鳥開始！</h3>
+                <div class="article-tags">
+                  <span>東南亞</span>
+                  <span>海島</span>
+                  <span>郵輪</span>
+                </div>
+                <p class="description">
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文，熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文。
+                </p>
+              </div>
+            </a>
+          </div>
         </section>
       </main>
 

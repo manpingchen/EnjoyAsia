@@ -146,3 +146,8 @@ video {
   height: auto;
   display: block;
 }
+
+a {
+  color: black;
+  text-decoration: none;
+}
