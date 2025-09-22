@@ -18,7 +18,7 @@
     </style>
   </head>
   <body>
-    <!--手機版 選單遮罩-->
+    <!-- 手機版 選單遮罩 -->
     <div class="mobile-menu-overlay">
       <div class="mobile-menu">
         <div class="close-icon">
@@ -35,7 +35,7 @@
       </div>
     </div>
 
-    <!--手機版 置底選單-->
+    <!-- 手機版 置底選單 -->
     <nav class="mobile-navbar">
       <a href="#" class="gradient-font-icon">
         <span class="material-symbols-outlined"> hotel </span>訂房
@@ -45,7 +45,7 @@
       <a href="#"> <span class="material-symbols-outlined"> concierge </span> 專人服務 </a>
     </nav>
 
-    <!--手機版 Header-->
+    <!-- 手機版 Header -->
     <header class="mobile-header rwd-wrapper">
       <div class="logo">
         <img src="images/logo.svg" alt="Logo" width="auto" height="30" />
@@ -56,12 +56,138 @@
           <span class="material-symbols-outlined gradient-font-icon">search</span>
         </button>
       </div>
-      <div class="menu-icon js-menu-toggle">
+      <div class="menu-icon menu-toggle">
         <img src="images/menu-toggle.svg" alt="主選單切換" width="auto" height="26" />
       </div>
     </header>
 
-    <!--桌面版 Header-->
+    <!-- 手機版 熱門分類 -->
+    <div class="hot-categories">
+      <ul class="hot-categories-list">
+        <li>
+          <span class="material-symbols-outlined gradient-font-icon">airport_shuttle</span>
+          接駁
+        </li>
+        <li><span class="material-symbols-outlined gradient-font-icon">restaurant</span>餐廳</li>
+        <li>
+          <span class="material-symbols-outlined gradient-font-icon"> restaurant </span>
+          城市
+        </li>
+        <li>
+          <span class="material-symbols-outlined gradient-font-icon"> flight_takeoff </span>
+          機票
+        </li>
+        <li>
+          <span class="material-symbols-outlined gradient-font-icon">airport_shuttle</span>
+          接駁
+        </li>
+        <li><span class="material-symbols-outlined gradient-font-icon">restaurant</span>餐廳</li>
+        <li>
+          <span class="material-symbols-outlined gradient-font-icon"> restaurant </span>
+          城市
+        </li>
+        <li>
+          <span class="material-symbols-outlined gradient-font-icon"> flight_takeoff </span>
+          機票
+        </li>
+      </ul>
+      <button class="hot-categories-all category-toggle" aria-controls="categoriesOverlay">
+        <span class="material-symbols-outlined gradient-font-icon"> apps </span>
+        全部
+      </button>
+    </div>
+
+    <!-- 手機版分類遮罩 -->
+    <div class="mobile-category-overlay" id="categoriesOverlay">
+      <div class="category-menu">
+        <div class="close-icon">
+          <span class="material-symbols-outlined">arrow_back_ios</span>
+        </div>
+        <h3>全部分類</h3>
+        <ul class="categories-list">
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon">airport_shuttle</span>
+            接駁
+          </li>
+          <li><span class="material-symbols-outlined gradient-font-icon">restaurant</span>餐廳</li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> restaurant </span>
+            城市
+          </li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> flight_takeoff </span>
+            機票
+          </li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon">airport_shuttle</span>
+            接駁
+          </li>
+          <li><span class="material-symbols-outlined gradient-font-icon">restaurant</span>餐廳</li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> restaurant </span>
+            城市
+          </li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> flight_takeoff </span>
+            機票
+          </li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon">airport_shuttle</span>
+            接駁
+          </li>
+          <li><span class="material-symbols-outlined gradient-font-icon">restaurant</span>餐廳</li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> restaurant </span>
+            城市
+          </li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> flight_takeoff </span>
+            機票
+          </li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon">airport_shuttle</span>
+            接駁
+          </li>
+          <li><span class="material-symbols-outlined gradient-font-icon">restaurant</span>餐廳</li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> restaurant </span>
+            城市
+          </li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> flight_takeoff </span>
+            機票
+          </li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon">airport_shuttle</span>
+            接駁
+          </li>
+          <li><span class="material-symbols-outlined gradient-font-icon">restaurant</span>餐廳</li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> restaurant </span>
+            城市
+          </li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> flight_takeoff </span>
+            機票
+          </li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon">airport_shuttle</span>
+            接駁
+          </li>
+          <li><span class="material-symbols-outlined gradient-font-icon">restaurant</span>餐廳</li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> restaurant </span>
+            城市
+          </li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> flight_takeoff </span>
+            機票
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 桌面版 Header -->
     <header class="desktop-header rwd-wrapper">
       <div class="header-content">
         <div class="logo">
@@ -84,13 +210,13 @@
       </nav>
     </header>
 
-    <!--桌面版 熱門搜尋-->
+    <!-- 桌面版 熱門搜尋 -->
     <div class="hot-searches rwd-wrapper">
       <ul class="hot-searches-list">
         <li>
           <a href="articles.html">
-            <span class="material-symbols-outlined gradient-font-icon">airport_shuttle</span
-            >熱門服務
+            <span class="material-symbols-outlined gradient-font-icon">airport_shuttle</span>
+            熱門服務
           </a>
         </li>
         <li>
@@ -116,7 +242,7 @@
       </ul>
     </div>
 
-    <!--網頁主內容-->
+    <!-- 網頁主內容 -->
     <div class="stretchy-container">
       <!--桌面版 Banner搜尋區-->
       <section class="banner">
