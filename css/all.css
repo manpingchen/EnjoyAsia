@@ -494,3 +494,33 @@ ul.hot-searches-list li a {
   align-items: center;
   color: var(--primary-color);
 }
+
+/* 為何選擇我們 */
+.about-us {
+  border-radius: var(--border-radius);
+  border: 1px solid var(--primary-color);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.about-us ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.about-us ul li {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.about-us img.service-icon {
+  height: 36px;
+}
+
+.about-us h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}

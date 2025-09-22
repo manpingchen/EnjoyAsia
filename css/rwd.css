@@ -339,6 +339,10 @@ body.menu-open {
   .suggested-articles .slide-article-list .article-card {
     flex: 0 0 calc(100% / 3 - 0.75rem);
   }
+
+  .about-us ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 @media (min-width: 660px) {
