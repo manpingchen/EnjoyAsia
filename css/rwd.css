@@ -1,5 +1,3 @@
-
-
 /* 當螢幕寬度大於或等於 992px 時啟用  */
 @media (min-width: 992px) {
   .mobile-menu-overlay {
@@ -205,7 +203,6 @@
   }
 }
 
-/* 文章區 */
 @media (min-width: 992px) {
   .article-card img {
     aspect-ratio: 16 / 9;
@@ -223,7 +220,6 @@
 @media (min-width: 660px) {
   .article-list {
     display: grid;
-    gap: 1rem;
     grid-template-columns: repeat(4, 1fr);
   }
 
@@ -240,5 +236,29 @@
 
   .view-all a {
     justify-content: flex-end;
+  }
+}
+
+/* --------------------------------------
+    文章列表頁面
+-------------------------------------- */
+@media (min-width: 992px) {
+  .article-page {
+    flex-direction: row;
+  }
+
+  .article-page aside {
+    width: 200px;
+    flex-shrink: 0;
+  }
+
+  .article-page .article-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 660px) and (max-width: 991px) {
+  .article-page .article-list {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
