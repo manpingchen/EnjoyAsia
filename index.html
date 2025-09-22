@@ -78,20 +78,6 @@
       </ul>
     </div>
 
-    <!--桌面版 Banner搜尋區-->
-    <section class="banner">
-      <div class="search rwd-wrapper">
-        <div class="search-box">
-          <span class="gradient-border"></span>
-          <input type="text" placeholder="搜尋下一個目的地, 如，首爾、東京、曼谷" />
-          <button type="button" class="search-btn">
-            <span class="material-symbols-outlined">search</span>
-          </button>
-        </div>
-      </div>
-      <img src="images/search-bg.png" alt="搜尋背景圖" class="search-bg" />
-    </section>
-
     <header class="mobile-header rwd-wrapper">
       <div class="logo">
         <img src="images/logo.svg" alt="Logo" width="auto" height="30" />
@@ -107,13 +93,122 @@
       </div>
     </header>
 
-    <div class="stretchy-container rwd-wrapper">
-      <main class="main-content">
+    <div class="stretchy-container">
+      <!--桌面版 Banner搜尋區-->
+      <section class="banner">
+        <div class="search rwd-wrapper">
+          <div class="search-box">
+            <span class="gradient-border"></span>
+            <input type="text" placeholder="搜尋下一個目的地, 如，首爾、東京、曼谷" />
+            <button type="button" class="search-btn">
+              <span class="material-symbols-outlined">search</span>
+            </button>
+          </div>
+        </div>
+        <img src="images/search-bg.png" alt="搜尋背景圖" class="search-bg" />
+      </section>
+
+      <main class="main-content rwd-wrapper">
         <section class="popular-articles articles">
-          <h2>人氣精選活動</h2>
-          <div class="article-list"></div>
-          <div class="view-all">
-            <a href="#">查看更多 ></a>
+          <div class="article-list-header">
+            <h2>人氣精選活動</h2>
+            <ul class="scroll">
+              <li><span class="material-symbols-outlined">chevron_left</span></li>
+              <li><span class="material-symbols-outlined">chevron_right</span></li>
+            </ul>
+          </div>
+          <div class="article-list">
+            <!-- 卡片 1 -->
+            <div class="article-card">
+              <img src="images/image1.png" alt="精選活動" />
+              <div class="info">
+                <p class="location">日本 · 東京</p>
+                <h3>精選活動名稱精選活動名稱</h3>
+                <div class="discount-tags">
+                  <span>買一送一</span>
+                  <span>全程接駁</span>
+                </div>
+                <div class="rating">
+                  <span class="stars">★★★★★</span>
+                  <span class="count">4K</span>
+                </div>
+                <p class="join">加入官方Line取得更優惠價格</p>
+                <p class="crossed-price price">NT 1,680</p>
+                <p class="discount"><span class="badge">早鳥優惠</span>享35%折</p>
+              </div>
+            </div>
+            <!-- 卡片 2 -->
+            <div class="article-card">
+              <img src="images/image1.png" alt="精選活動" />
+              <div class="info">
+                <p class="location">韓國 · 首爾</p>
+                <h3>精選活動名稱精選活動名稱</h3>
+                <div class="discount-tags">
+                  <span>買一送一</span>
+                  <span>全程接駁</span>
+                </div>
+                <div class="rating">
+                  <span class="stars">★★★★☆</span>
+                  <span class="count">4K</span>
+                </div>
+                <p class="join">加入官方Line取得更優惠價格</p>
+                <p class="crossed-price price">NT 1,680</p>
+              </div>
+            </div>
+            <!-- 卡片 3 -->
+            <div class="article-card">
+              <img src="images/image1.png" alt="精選活動" />
+              <div class="info">
+                <p class="location">韓國 · 首爾</p>
+                <h3>精選活動名稱精選活動名稱</h3>
+                <div class="discount-tags">
+                  <span>買一送一</span>
+                  <span>全程接駁</span>
+                </div>
+                <div class="rating">
+                  <span class="stars">★★★★☆</span>
+                  <span class="count">4K</span>
+                </div>
+                <p class="join">加入官方Line取得更優惠價格</p>
+                <p class="crossed-price price">NT 1,680</p>
+              </div>
+            </div>
+            <!-- 卡片 4 -->
+            <div class="article-card">
+              <img src="images/image1.png" alt="精選活動" />
+              <div class="info">
+                <p class="location">韓國 · 首爾</p>
+                <h3>精選活動名稱精選活動名稱</h3>
+                <div class="discount-tags">
+                  <span>買一送一</span>
+                  <span>全程接駁</span>
+                </div>
+                <div class="rating">
+                  <span class="stars">★★★★☆</span>
+                  <span class="count">4K</span>
+                </div>
+                <p class="join">加入官方Line取得更優惠價格</p>
+                <p class="crossed-price price">NT 1,680</p>
+              </div>
+            </div>
+            <!-- 卡片 5 -->
+            <div class="article-card">
+              <img src="images/image1.png" alt="精選活動" />
+              <div class="info">
+                <p class="location">台灣 · 台北</p>
+                <h3>精選活動名稱精選活動名稱</h3>
+                <div class="discount-tags">
+                  <span>買一送一</span>
+                  <span>全程接駁</span>
+                </div>
+                <div class="rating">
+                  <span class="stars">★★★★☆</span>
+                  <span class="count">4K</span>
+                </div>
+                <p class="join">加入官方Line取得更優惠價格</p>
+                <p class="crossed-price price">NT 1,680</p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -121,7 +216,83 @@
 
         <section class="featured-articles articles">
           <h2>最新資訊</h2>
-          <div class="article-list"></div>
+          <div class="article-list">
+            <!-- 卡片 1 -->
+            <div class="article-card">
+              <img src="images/image1.png" alt="精選活動" />
+              <div class="info">
+                <p class="location">日本 · 東京</p>
+                <h3>精選活動名稱精選活動名稱</h3>
+                <div class="article-tags">
+                  <span>買一送一</span>
+                  <span>全程接駁</span>
+                </div>
+                <p class="description">
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文
+                </p>
+              </div>
+            </div>
+            <!-- 卡片 2 -->
+            <div class="article-card">
+              <img src="images/image1.png" alt="精選活動" />
+              <div class="info">
+                <p class="location">韓國 · 首爾</p>
+                <h3>精選活動名稱精選活動名稱</h3>
+                <div class="article-tags">
+                  <span>買一送一</span>
+                  <span>全程接駁</span>
+                </div>
+                <p class="description">
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文
+                </p>
+              </div>
+            </div>
+            <!-- 卡片 3 -->
+            <div class="article-card">
+              <img src="images/image1.png" alt="精選活動" />
+              <div class="info">
+                <p class="location">韓國 · 首爾</p>
+                <h3>精選活動名稱精選活動名稱</h3>
+                <div class="article-tags">
+                  <span>買一送一</span>
+                  <span>全程接駁</span>
+                </div>
+                <p class="description">
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文
+                </p>
+              </div>
+            </div>
+            <!-- 卡片 4 -->
+            <div class="article-card">
+              <img src="images/image1.png" alt="精選活動" />
+              <div class="info">
+                <p class="location">韓國 · 首爾</p>
+                <h3>精選活動名稱精選活動名稱</h3>
+                <div class="article-tags">
+                  <span>買一送一</span>
+                  <span>全程接駁</span>
+                </div>
+                <p class="description">
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文
+                </p>
+              </div>
+            </div>
+            <!-- 卡片 5 -->
+            <div class="article-card">
+              <img src="images/image1.png" alt="精選活動" />
+              <div class="info">
+                <p class="location">台灣 · 台北</p>
+                <h3>精選活動名稱精選活動名稱</h3>
+                <div class="article-tags">
+                  <span>買一送一</span>
+                  <span>全程接駁</span>
+                </div>
+                <p class="description">
+                  熱門文章內容熱門文章內容熱門文章內容，最多三排文字，可點擊連結全文
+                </p>
+              </div>
+            </div>
+          </div>
           <div class="view-all">
             <a href="#">查看更多 ></a>
           </div>
@@ -141,7 +312,7 @@
         </section>
       </main>
 
-      <footer class="footer">
+      <footer class="footer rwd-wrapper">
         <hr class="divider" />
 
         <div class="footer-container">
