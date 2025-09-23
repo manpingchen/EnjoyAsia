@@ -127,3 +127,91 @@ document.querySelectorAll(".faq-question").forEach((button) => {
     }
   });
 });
+
+// 浮動官方聯絡: 自動標記置中 item 為 active，並支援點擊
+(function () {
+  const widget = document.querySelector(".support-float");
+  if (!widget) return;
+  const inner = widget.querySelector(".support-inner");
+  const items = Array.from(widget.querySelectorAll(".support-item"));
+
+  // helper: 設定 active（移除其他）
+  function setActive(index) {
+    items.forEach((it, i) => {
+      if (i === index) it.classList.add("active");
+      else it.classList.remove("active");
+    });
+  }
+
+  // 找距離容器中點最近的 item index
+  function findClosestIndex() {
+    const rect = inner.getBoundingClientRect();
+    const containerCenter = rect.top + rect.height / 2;
+    let closest = { idx: 0, dist: Infinity };
+    items.forEach((it, i) => {
+      const r = it.getBoundingClientRect();
+      const itemCenter = r.top + r.height / 2;
+      const d = Math.abs(itemCenter - containerCenter);
+      if (d < closest.dist) {
+        closest = { idx: i, dist: d };
+      }
+    });
+    return closest.idx;
+  }
+
+  // on scroll：使用 rAF 更新 active（避免過度觸發）
+  let ticking = false;
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const idx = findClosestIndex();
+        setActive(idx);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  // 初始計算
+  setTimeout(() => {
+    // 若想預設讓第二個 (index 1) 在中間，將 scrollTop 調整到該位置
+    // 例如 inner.scrollTop = items[1].offsetTop - inner.clientHeight/2 + items[1].clientHeight/2;
+    const idx = findClosestIndex();
+    setActive(idx);
+  }, 50);
+
+  inner.addEventListener("scroll", onScroll, { passive: true });
+
+  // 點擊時：讀取 data-href 或觸發行為
+  items.forEach((it) => {
+    it.addEventListener("click", (e) => {
+      const href = it.dataset.href;
+      if (href) {
+        // 若是電話 (tel:) 或外部網址，用 location.href 或 open
+        if (href.startsWith("tel:")) {
+          window.location.href = href;
+        } else {
+          // 新分頁打開外部連結
+          window.open(href, "_blank");
+        }
+      } else {
+        // 若沒有 href，可當作內部互動：例如開啟聊天視窗
+        console.log("support item clicked", it);
+      }
+    });
+
+    // 鍵盤啟動（Enter / Space）
+    it.addEventListener("keydown", (ev) => {
+      if (ev.key === "Enter" || ev.key === " ") {
+        ev.preventDefault();
+        it.click();
+      }
+    });
+  });
+
+  // 可選：當視窗尺寸改變，重新設 active
+  window.addEventListener("resize", () => {
+    const idx = findClosestIndex();
+    setActive(idx);
+  });
+})();
