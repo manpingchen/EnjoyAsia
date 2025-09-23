@@ -60,7 +60,8 @@ header {
 .stretchy-container {
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   width: 100%;
   height: calc(100vh - var(--header-height) - var(--mobile-nav-height));
 }
@@ -821,7 +822,6 @@ ul.hot-searches-list li a {
 
   font-size: 0.9rem;
   padding: 1rem 0;
-  width: 100%;
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
