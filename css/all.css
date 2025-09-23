@@ -33,12 +33,17 @@
   --gray-900: #212529;
 
   /* 卡片參數 */
-  --border-radius: 10px;
+  --border-radius: 0.25rem;
   --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   /* 選單尺寸 */
   --header-height: 60px;
   --mobile-nav-height: 80px;
+  --breadcrumb-height: 60px;
+
+  @media (min-width: 992px) {
+    --header-height: 80px;
+  }
 }
 
 /* Footer 置底佈局 */
@@ -117,7 +122,7 @@ p {
   bottom: 0;
   width: 100%;
   display: flex;
-  height: 75px;
+  height: 80px;
   background: white;
   border-top: 1px solid var(--primary-color-lighter);
 }
@@ -133,6 +138,10 @@ p {
   gap: 0.25rem;
   font-size: 11px;
   font-weight: 400;
+}
+
+.mobile-navbar span.material-symbols-outlined {
+  font-size: 30px;
 }
 
 .mobile-navbar a.active {
@@ -546,14 +555,14 @@ ul.hot-searches-list li a {
   gap: 0.5rem;
 }
 
-.article-card .location,
-.article-card .published-date,
-.article-card .views-count {
+.location,
+.published-date,
+.views-count {
   font-size: 13px;
   color: var(--gray-500);
 }
 
-.article-card .views-count {
+.views-count {
   display: flex;
   align-items: center;
   gap: 0.25rem;
@@ -589,7 +598,7 @@ ul.hot-searches-list li a {
 }
 
 .event-tag {
-  display: block;
+  display: inline-block;
   padding: 3px 6px;
   font-size: 14px;
   color: var(--secondary-color);
@@ -597,7 +606,7 @@ ul.hot-searches-list li a {
 }
 
 .tag {
-  display: block;
+  display: inline-block;
   padding: 0.5rem 1rem;
   border-radius: 1rem;
   font-size: 14px;
@@ -807,8 +816,19 @@ ul.hot-searches-list li a {
    麵包屑樣式
 -------------------------------------- */
 .breadcrumb {
+  position: sticky;
+  top: 0;
+
   font-size: 0.9rem;
-  margin-bottom: 1rem;
+  padding: 1rem 0;
+  width: 100%;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: white;
+  z-index: 9;
+
+  height: var(--breadcrumb-height);
 }
 
 .breadcrumb ol {
@@ -890,10 +910,15 @@ aside h2 {
 }
 
 aside .hot-searches-list {
-  display: flex;
+  display: none;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
+}
+
+aside .hot-categories {
+  margin-left: -5%;
+  margin-right: -5%;
 }
 
 aside .tags-list {
@@ -901,4 +926,142 @@ aside .tags-list {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 0.5rem;
+}
+
+/* --------------------------------------
+   文章內容頁
+-------------------------------------- */
+section.article .article-tags {
+  margin-bottom: 1rem;
+}
+
+section.article .article-tags .tag {
+  padding: 5px;
+  font-size: 12px;
+}
+
+section.article h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  line-height: 1.25em;
+}
+
+section.article .content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+section.article img.article-image {
+  width: 100%;
+  border-radius: 0.25rem;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+section.article h3.summary {
+  color: var(--discount-color);
+  border-left: 4px solid var(--discount-color);
+  padding-left: 0.5rem;
+  line-height: 1.5em;
+}
+
+main.article-page {
+  margin-bottom: 3rem;
+}
+
+/* --------------------------------------
+   FAQ
+-------------------------------------- */
+.faq-page {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+.faq {
+  flex: 1;
+  width: 100%;
+}
+
+.faq h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.faq-list {
+  list-style: none;
+}
+
+.faq-list li {
+  margin-bottom: 0.5rem;
+}
+
+.faq-question {
+  width: 100%;
+  background: var(--badge-background);
+  border: none;
+  padding: 1rem;
+  text-align: left;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--secondary-color-darkest);
+  font-weight: 600;
+}
+
+.faq-question::after {
+  content: "＋";
+  font-weight: bold;
+}
+
+.faq-question.active::after {
+  content: "－";
+}
+
+.faq-question.active {
+  color: white;
+  background: var(--secondary-color);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  background: #fff;
+  padding: 0 1rem;
+}
+
+.faq-answer p {
+  margin: 0.5rem 0;
+}
+
+.faq-answer a {
+  color: var(--primary-color);
+}
+
+.faq-page .banner {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+
+  display: none;
+  position: relative;
+}
+
+.faq-page .banner img.search-bg {
+  display: block;
 }

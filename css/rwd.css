@@ -43,6 +43,10 @@
 /* --------------------------------------
     Footer
 -------------------------------------- */
+footer {
+  width: 100% !important;
+}
+
 .footer-top {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -92,11 +96,14 @@
 
 .footer-bottom {
   text-align: left;
-  font-size: 12px;
   color: var(--gray-500);
-  line-height: 1.5;
   margin-bottom: 1rem;
   padding: 0 1rem;
+}
+
+.footer-bottom p {
+  font-size: 12px;
+  line-height: 1.5em;
 }
 
 .payment-section {
@@ -240,14 +247,19 @@
 }
 
 /* --------------------------------------
-    文章列表頁面
+    文章列表、文章內容頁面
 -------------------------------------- */
 @media (min-width: 992px) {
+  section.articles,
+  section.article {
+    flex: 1;
+  }
   .article-page {
     flex-direction: row;
+    flex-wrap: wrap;
   }
 
-  .article-page aside {
+  aside {
     width: 200px;
     flex-shrink: 0;
   }
@@ -255,10 +267,32 @@
   .article-page .article-list {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  .article-page .hot-searches-list {
+    display: flex;
+  }
 }
 
 @media (min-width: 660px) and (max-width: 991px) {
   .article-page .article-list {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+/* --------------------------------------
+    文章列表、文章內容頁面
+-------------------------------------- */
+@media (min-width: 992px) {
+  .faq-page {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .faq-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .faq-page .banner {
+    display: block;
   }
 }

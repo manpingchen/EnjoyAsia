@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>眾享亞洲</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/all.css" />
+    <link rel="stylesheet" href="css/rwd.css" />
+  </head>
+  <body>
+    <!-- 手機版 選單遮罩 -->
+    <div class="mobile-menu-overlay">
+      <div class="mobile-menu">
+        <div class="close-icon">
+          <span class="material-symbols-outlined">arrow_back_ios</span>
+        </div>
+        <nav class="mobile-nav-list">
+          <a href="articles.html">旅遊</a>
+          <a href="articles.html">訂房</a>
+          <a href="articles.html">桑拿</a>
+          <a href="articles.html">服務介紹</a>
+          <a href="faq.html">FAQ</a>
+          <a href="#">專人客服</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 手機版分類遮罩 -->
+    <div class="mobile-category-overlay" id="categoriesOverlay">
+      <div class="category-menu">
+        <div class="close-icon">
+          <span class="material-symbols-outlined">arrow_back_ios</span>
+        </div>
+        <h3>全部分類</h3>
+        <ul class="categories-list">
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon">airport_shuttle</span>
+            接駁
+          </li>
+          <li><span class="material-symbols-outlined gradient-font-icon">restaurant</span>餐廳</li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> restaurant </span>
+            城市
+          </li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> flight_takeoff </span>
+            機票
+          </li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon">airport_shuttle</span>
+            接駁
+          </li>
+          <li><span class="material-symbols-outlined gradient-font-icon">restaurant</span>餐廳</li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> restaurant </span>
+            城市
+          </li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> flight_takeoff </span>
+            機票
+          </li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon">airport_shuttle</span>
+            接駁
+          </li>
+          <li><span class="material-symbols-outlined gradient-font-icon">restaurant</span>餐廳</li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> restaurant </span>
+            城市
+          </li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> flight_takeoff </span>
+            機票
+          </li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon">airport_shuttle</span>
+            接駁
+          </li>
+          <li><span class="material-symbols-outlined gradient-font-icon">restaurant</span>餐廳</li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> restaurant </span>
+            城市
+          </li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> flight_takeoff </span>
+            機票
+          </li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon">airport_shuttle</span>
+            接駁
+          </li>
+          <li><span class="material-symbols-outlined gradient-font-icon">restaurant</span>餐廳</li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> restaurant </span>
+            城市
+          </li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> flight_takeoff </span>
+            機票
+          </li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon">airport_shuttle</span>
+            接駁
+          </li>
+          <li><span class="material-symbols-outlined gradient-font-icon">restaurant</span>餐廳</li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> restaurant </span>
+            城市
+          </li>
+          <li>
+            <span class="material-symbols-outlined gradient-font-icon"> flight_takeoff </span>
+            機票
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 手機版 置底選單 -->
+    <nav class="mobile-navbar">
+      <a href="#" class="gradient-font-icon">
+        <span class="material-symbols-outlined"> hotel </span>訂房
+      </a>
+      <a href="#"> <span class="material-symbols-outlined"> travel_luggage_and_bags </span>旅遊 </a>
+      <a href="#"> <span class="material-symbols-outlined"> directions_car </span>包車</a>
+      <a href="#"> <span class="material-symbols-outlined"> concierge </span> 專人服務 </a>
+    </nav>
+
+    <!-- 手機版 Header -->
+    <header class="mobile-header rwd-wrapper">
+      <a class="logo" href="index.html">
+        <img src="images/logo.svg" alt="Logo" width="auto" height="30" />
+      </a>
+      <div class="search-box">
+        <input type="text" placeholder="熱門餐廳、節慶活動、咖啡店......" />
+        <button type="button" class="search-btn">
+          <span class="material-symbols-outlined gradient-font-icon">search</span>
+        </button>
+      </div>
+      <div class="menu-icon menu-toggle">
+        <img src="images/menu-toggle.svg" alt="主選單切換" width="auto" height="26" />
+      </div>
+    </header>
+
+    <!-- 電腦版 Header -->
+    <header class="desktop-header rwd-wrapper">
+      <div class="header-content">
+        <a class="logo" href="index.html">
+          <img src="images/logo-all.png" alt="Logo" width="180" height="auto" />
+        </a>
+        <div class="search-box">
+          <input type="text" placeholder="熱門餐廳、節慶活動、咖啡店......" />
+          <button type="button" class="search-btn">
+            <span class="material-symbols-outlined gradient-font-icon">search</span>
+          </button>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <a href="articles.html">旅遊</a>
+        <a href="articles.html">訂房</a>
+        <a href="articles.html">桑拿</a>
+        <a href="articles.html">服務介紹</a>
+        <a href="faq.html">FAQ</a>
+        <a href="articles.html">專人客服</a>
+      </nav>
+    </header>
+
+    <!-- 網頁主內容 -->
+    <div class="stretchy-container">
+      <main class="main-content rwd-wrapper faq-page">
+        <!-- 麵包屑 -->
+        <nav class="breadcrumb">
+          <ol class="rwd-wrapper">
+            <li><a href="index.html">首頁</a></li>
+            <li aria-current="page">FAQ</li>
+          </ol>
+        </nav>
+
+        <!-- 電腦版 Banner -->
+        <section class="banner">
+          <img src="images/search-bg.png" alt="背景圖" class="search-bg" />
+        </section>
+
+        <div class="faq-container">
+          <!-- FAQ -->
+          <section class="faq">
+            <h2>FAQ</h2>
+            <ul class="faq-list">
+              <li>
+                <button class="faq-question">Q1: 如何訂房？</button>
+                <div class="faq-answer">
+                  <p>您可以在首頁選擇訂房，選擇日期與房型後完成付款即可。</p>
+                </div>
+              </li>
+              <li>
+                <button class="faq-question">Q2: 可以取消訂單嗎？</button>
+                <div class="faq-answer">
+                  <p>
+                    常見問題說明，常見問題說明常見問題說明常見問題說明，常見問題說明，常見問題說明常見問題說明常見問題說明。常見問題說明，常見問題說明常見問題說明常見問題說明，常見問題說明，常見問題說明常見問題說明常見問題說明。
+                    常見問題說明，常見問題說明常見問題說明常見問題說明，常見問題說明，常見問題說明常見問題說明常見問題說明。
+                    <a href="mailto:contact@enjoyasia.com.tw">contact@enjoyasia.com.tw</a>
+                  </p>
+                </div>
+              </li>
+              <li>
+                <button class="faq-question">Q3: 是否提供旅遊保險？</button>
+                <div class="faq-answer">
+                  <p>我們提供選擇性的旅遊保險方案，可在訂單頁面加購。</p>
+                </div>
+              </li>
+            </ul>
+          </section>
+          <!-- 延伸選單 -->
+          <aside>
+            <div class="searches">
+              <h2>人氣搜尋</h2>
+              <ul class="hot-searches-list">
+                <li>
+                  <a href="articles.html">
+                    <span class="material-symbols-outlined gradient-font-icon"
+                      >airport_shuttle</span
+                    >
+                    熱門服務
+                  </a>
+                </li>
+                <li>
+                  <a href="articles.html">
+                    <span class="material-symbols-outlined gradient-font-icon">restaurant</span
+                    >熱門餐廳
+                  </a>
+                </li>
+                <li>
+                  <a href="articles.html">
+                    <span class="material-symbols-outlined gradient-font-icon">location_city</span
+                    >熱門城市
+                  </a>
+                </li>
+                <li>
+                  <a href="articles.html">
+                    <span class="material-symbols-outlined gradient-font-icon">flight_takeoff</span
+                    >熱門機票
+                  </a>
+                </li>
+                <li>
+                  <a href="articles.html">
+                    <span class="material-symbols-outlined gradient-font-icon">liquor</span>熱門酒吧
+                  </a>
+                </li>
+              </ul>
+              <div class="hot-categories">
+                <ul class="hot-categories-list">
+                  <li>
+                    <span class="material-symbols-outlined gradient-font-icon"
+                      >airport_shuttle</span
+                    >
+                    接駁
+                  </li>
+                  <li>
+                    <span class="material-symbols-outlined gradient-font-icon">restaurant</span>餐廳
+                  </li>
+                  <li>
+                    <span class="material-symbols-outlined gradient-font-icon"> restaurant </span>
+                    城市
+                  </li>
+                  <li>
+                    <span class="material-symbols-outlined gradient-font-icon">
+                      flight_takeoff
+                    </span>
+                    機票
+                  </li>
+                  <li>
+                    <span class="material-symbols-outlined gradient-font-icon"
+                      >airport_shuttle</span
+                    >
+                    接駁
+                  </li>
+                  <li>
+                    <span class="material-symbols-outlined gradient-font-icon">restaurant</span>餐廳
+                  </li>
+                  <li>
+                    <span class="material-symbols-outlined gradient-font-icon"> restaurant </span>
+                    城市
+                  </li>
+                  <li>
+                    <span class="material-symbols-outlined gradient-font-icon">
+                      flight_takeoff
+                    </span>
+                    機票
+                  </li>
+                </ul>
+                <button
+                  class="hot-categories-all category-toggle"
+                  aria-controls="categoriesOverlay"
+                >
+                  <span class="material-symbols-outlined gradient-font-icon"> apps </span>
+                  全部
+                </button>
+              </div>
+            </div>
+            <div class="tags">
+              <h2>熱門標籤</h2>
+              <ul class="tags-list">
+                <li>
+                  <a href="articles.html" class="tag"> 首爾 </a>
+                </li>
+                <li>
+                  <a href="articles.html" class="tag"> 在地旅遊 </a>
+                </li>
+                <li>
+                  <a href="articles.html" class="tag"> 東南亞 </a>
+                </li>
+                <li>
+                  <a href="articles.html" class="tag"> 海島 </a>
+                </li>
+                <li>
+                  <a href="articles.html" class="tag">自助行 </a>
+                </li>
+                <li>
+                  <a href="articles.html" class="tag"> 咖啡店 </a>
+                </li>
+                <li>
+                  <a href="articles.html" class="tag"> 居酒屋 </a>
+                </li>
+                <li>
+                  <a href="articles.html" class="tag"> 酒吧 </a>
+                </li>
+                <li>
+                  <a href="articles.html" class="tag"> 在地小店 </a>
+                </li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </main>
+
+      <footer class="footer rwd-wrapper">
+        <hr class="divider" />
+
+        <div class="footer-container">
+          <div class="footer-top">
+            <div class="footer-section">
+              <h4>認識眾享亞洲</h4>
+              <ul class="footer-links">
+                <li><a href="#">關於我們</a></li>
+                <li><a href="#">加入我們</a></li>
+                <li><a href="#">子項目標題</a></li>
+              </ul>
+            </div>
+            <div class="footer-section">
+              <h4>其他項目</h4>
+              <ul class="footer-links">
+                <li><a href="#">子項目標題</a></li>
+                <li><a href="#">子項目標題</a></li>
+                <li><a href="#">子項目標題</a></li>
+              </ul>
+            </div>
+            <div class="footer-section">
+              <h4>其他項目</h4>
+              <ul class="footer-links">
+                <li><a href="#">子項目標題</a></li>
+                <li><a href="#">子項目標題</a></li>
+                <li><a href="#">子項目標題</a></li>
+              </ul>
+            </div>
+            <div class="footer-section">
+              <h4>其他項目</h4>
+              <ul class="footer-links">
+                <li><a href="#">子項目標題</a></li>
+                <li><a href="#">子項目標題</a></li>
+                <li><a href="#">子項目標題</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="footer-middle">
+            <div class="payment-section">
+              <h4 class="payment-title">付款方式</h4>
+              <div class="payment-icons">
+                <img src="images/payment/visa.svg" alt="VISA" />
+                <img src="images/payment/mastercard.svg" alt="MasterCard" />
+                <img src="images/payment/jcb.svg" alt="JCB" />
+                <img src="images/payment/amex.svg" alt="Amex" />
+                <img src="images/payment/diners-club.svg" alt="Diners Club" />
+                <img src="images/payment/discover.svg" alt="Discover" />
+                <img src="images/payment/union-pay.png" alt="UnionPay" />
+                <img src="images/payment/apple-pay.svg" alt="Apple Pay" />
+                <img src="images/payment/google-pay.svg" alt="Google Pay" />
+              </div>
+            </div>
+            <div class="social-icons">
+              <a href="#"><img src="images/social/line.svg" alt="Line" /></a>
+              <a href="#"><img src="images/social/facebook.svg" alt="Facebook" /></a>
+              <a href="#"><img src="images/social/instagram.svg" alt="Instagram" /></a>
+              <a href="#"><img src="images/social/threads.svg" alt="threads" /></a>
+            </div>
+          </div>
+
+          <hr class="divider" />
+
+          <div class="footer-bottom">
+            <p>&copy; 2025 眾享亞洲. All Rights Reserved.</p>
+            <p>公司品牌文字資訊、電子郵件、統一編號、公司地址、聯絡電話</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="js/all.js"></script>
+  </body>
+</html>
