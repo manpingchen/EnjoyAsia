@@ -50,7 +50,8 @@
 body {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
 }
 
 header {
@@ -63,7 +64,7 @@ header {
   overflow-y: auto;
   overflow-x: hidden;
   width: 100%;
-  height: calc(100vh - var(--header-height) - var(--mobile-nav-height));
+  height: calc(var(--vh, 100vh) - var(--header-height) - var(--mobile-nav-height));
 }
 
 main,
@@ -126,6 +127,7 @@ p {
   height: 80px;
   background: white;
   border-top: 1px solid var(--primary-color-lighter);
+  z-index: 90;
 }
 
 .mobile-navbar a {
@@ -147,6 +149,13 @@ p {
 
 .mobile-navbar a.active {
   color: var(--primary-color);
+}
+
+/* 3) 內容底部加 padding，避免被固定底部列覆蓋（含 iOS 安全區） */
+.main-content,
+.article-page,
+.faq-page {
+  padding-bottom: calc(var(--mobile-nav-height) + env(safe-area-inset-bottom, 0px));
 }
 
 /* --------------------------------------

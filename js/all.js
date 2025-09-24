@@ -215,3 +215,25 @@ document.querySelectorAll(".faq-question").forEach((button) => {
     setActive(idx);
   });
 })();
+
+(function fixMobileVh() {
+  function setVhVar() {
+    const h =
+      (window.visualViewport ? window.visualViewport.height : window.innerHeight) ||
+      window.innerHeight;
+    document.documentElement.style.setProperty("--vh", `${h}px`);
+  }
+  setVhVar();
+
+  // 監聽各種可能改變可視高度的事件
+  window.addEventListener("resize", setVhVar, { passive: true });
+  window.addEventListener("orientationchange", setVhVar, { passive: true });
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) setVhVar();
+  });
+
+  // iOS 上地址列伸縮時會觸發
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", setVhVar, { passive: true });
+  }
+})();
