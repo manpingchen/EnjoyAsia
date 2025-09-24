@@ -46,12 +46,26 @@
   }
 }
 
+/* 讓整頁高度等於可視高度，並關掉整頁滾動 */
+html,
+body {
+  margin: 0;
+  height: var(--vh, 100svh);
+  overflow: hidden; /* ← 關閉整頁滾動，僅由中段容器捲動 */
+}
+
+/* 若支援 100dvh，精度更好 */
+@supports (height: 100dvh) {
+  html,
+  body {
+    height: 100dvh;
+  }
+}
+
 /* Footer 置底佈局 */
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  height: auto;
 }
 
 header {
@@ -64,7 +78,8 @@ header {
   overflow-y: auto;
   overflow-x: hidden;
   width: 100%;
-  height: calc(var(--vh, 100vh) - var(--header-height) - var(--mobile-nav-height));
+  min-height: 0; /* 讓它在 flex 父層內當真正的捲動容器 */
+  height: calc(var(--vh, 100svh) - var(--header-height) - var(--mobile-nav-height));
 }
 
 main,
@@ -74,6 +89,7 @@ footer {
 
 main {
   flex-grow: 1;
+  min-height: 0;
 }
 
 .rwd-wrapper {
@@ -122,12 +138,15 @@ p {
 .mobile-navbar {
   position: fixed;
   bottom: 0;
-  width: 100%;
   display: flex;
+  z-index: 90;
+
+  width: 100%;
   height: 80px;
+
   background: white;
   border-top: 1px solid var(--primary-color-lighter);
-  z-index: 90;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 .mobile-navbar a {
