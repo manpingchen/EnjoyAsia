@@ -186,9 +186,9 @@ p {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* 半透明遮罩 */
-  z-index: 100;
+  z-index: 999;
   display: none; /* 預設隱藏 */
+  background-color: rgba(0, 0, 0, 0.5); /* 半透明遮罩 */
 }
 
 .mobile-category-overlay {
@@ -198,7 +198,7 @@ p {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5); /* 半透明遮罩 */
-  z-index: 100;
+  z-index: 999;
   display: none; /* 預設隱藏 */
 }
 
@@ -1101,7 +1101,7 @@ main.article-page {
   position: fixed;
   right: 1.5rem;
   bottom: calc(var(--mobile-nav-height) + 2rem);
-  z-index: 1200;
+  z-index: 100;
   width: 80px;
   height: 100px;
   display: flex;
