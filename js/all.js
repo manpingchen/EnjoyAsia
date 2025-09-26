@@ -115,6 +115,25 @@ articleLists.forEach((articleList) => {
   });
 });
 
+articleList.addEventListener("mousemove", (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - articleList.offsetLeft;
+  const walk = (x - startX) * 1.5; // 滑動速度
+  let newScrollLeft = scrollLeft - walk;
+
+  // 限制邊界
+  if (newScrollLeft < 0) {
+    newScrollLeft = 0;
+  }
+  const maxScrollLeft = articleList.scrollWidth - articleList.clientWidth;
+  if (newScrollLeft > maxScrollLeft) {
+    newScrollLeft = maxScrollLeft;
+  }
+
+  articleList.scrollLeft = newScrollLeft;
+});
+
 document.querySelectorAll(".faq-question").forEach((button) => {
   button.addEventListener("click", () => {
     const answer = button.nextElementSibling;
