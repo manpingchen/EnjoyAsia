@@ -1,4 +1,4 @@
-// --- 手機主選單 ---
+// === 手機主選單 ===
 document.addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.querySelector(".menu-toggle");
   const menuOverlay = document.querySelector(".mobile-menu-overlay");
@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!menuToggle || !menuOverlay || !mobileMenu) return;
 
-  // 開啟選單
   menuToggle.addEventListener("click", () => {
     menuOverlay.style.display = "block";
     setTimeout(() => {
@@ -16,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 10);
   });
 
-  // 關閉選單
   menuOverlay.addEventListener("click", (event) => {
     if (event.target === menuOverlay || event.target.closest(".close-icon")) {
       mobileMenu.classList.remove("is-active");
@@ -32,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// --- 手機分類選單 ---
+// === 手機分類選單 ===
 document.addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.querySelector(".category-toggle");
   const menuOverlay = document.querySelector(".mobile-category-overlay");
@@ -64,14 +62,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// --- 首頁文章卡片滑動效果 ---
+// === 首頁文章卡片滑動 ===
 const articleLists = document.querySelectorAll(".slide-article-list");
 
 articleLists.forEach((list) => {
   const prevBtn = list.parentElement.querySelector(".scroll li:first-child");
   const nextBtn = list.parentElement.querySelector(".scroll li:last-child");
 
-  const EPS = 1; // 容差
+  const EPS = 1;
   const maxScrollLeftOf = (el) => el.scrollWidth - el.clientWidth;
 
   function updateArrows() {
@@ -100,7 +98,7 @@ articleLists.forEach((list) => {
     const max = maxScrollLeftOf(list);
     if (x < 0) x = 0;
     if (x > max) x = max;
-    if (list.scrollLeft !== x) list.scrollLeft = x;
+    list.scrollLeft = x;
     updateArrows();
   }
 
@@ -112,10 +110,8 @@ articleLists.forEach((list) => {
     return cardW + gap;
   }
 
-  // --- 滑鼠拖曳 ---
-  let isDown = false,
-    startX = 0,
-    startScrollLeft = 0;
+  // --- 滑鼠拖曳（自由捲動，不吸附）---
+  let isDown = false, startX = 0, startScrollLeft = 0;
   list.addEventListener("mousedown", (e) => {
     isDown = true;
     list.classList.add("grabbing");
@@ -139,67 +135,51 @@ articleLists.forEach((list) => {
     list.classList.remove("grabbing");
   });
 
-  // --- 觸控 ---
+  // --- 觸控（自由捲動，不吸附）---
   let lastTouchX = 0;
-  list.addEventListener(
-    "touchstart",
-    (e) => {
-      isDown = true;
-      lastTouchX = e.touches[0].pageX;
-      startX = lastTouchX - list.offsetLeft;
-      startScrollLeft = list.scrollLeft;
-    },
-    { passive: true }
-  );
+  list.addEventListener("touchstart", (e) => {
+    isDown = true;
+    lastTouchX = e.touches[0].pageX;
+    startX = lastTouchX - list.offsetLeft;
+    startScrollLeft = list.scrollLeft;
+  }, { passive: true });
 
-  list.addEventListener(
-    "touchmove",
-    (e) => {
-      if (!isDown) return;
-      const currX = e.touches[0].pageX;
-      const deltaX = currX - lastTouchX;
-      lastTouchX = currX;
+  list.addEventListener("touchmove", (e) => {
+    if (!isDown) return;
+    const currX = e.touches[0].pageX;
+    const deltaX = currX - lastTouchX;
+    lastTouchX = currX;
 
-      const max = maxScrollLeftOf(list);
-      const atStart = list.scrollLeft <= EPS;
-      const atEnd = list.scrollLeft >= max - EPS;
-      if ((atStart && deltaX > 0) || (atEnd && deltaX < 0)) e.preventDefault();
+    const max = maxScrollLeftOf(list);
+    const atStart = list.scrollLeft <= EPS;
+    const atEnd = list.scrollLeft >= max - EPS;
+    if ((atStart && deltaX > 0) || (atEnd && deltaX < 0)) e.preventDefault();
 
-      const x = currX - list.offsetLeft;
-      const walk = (x - startX) * 1.5;
-      clampAndSet(startScrollLeft - walk);
-    },
-    { passive: false }
-  );
+    const x = currX - list.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    clampAndSet(startScrollLeft - walk);
+  }, { passive: false });
 
-  list.addEventListener(
-    "touchend",
-    () => {
-      isDown = false;
-    },
-    { passive: true }
-  );
+  list.addEventListener("touchend", () => {
+    isDown = false;
+  }, { passive: true });
 
-  // --- 慣性滑動期間 ---
+  // --- 更新箭頭 ---
   let scrollTicking = false;
-  list.addEventListener(
-    "scroll",
-    () => {
-      if (!scrollTicking) {
-        requestAnimationFrame(() => {
-          const max = maxScrollLeftOf(list);
-          const x = list.scrollLeft;
-          if (x < 0 || x > max) clampAndSet(x);
-          else updateArrows();
-          scrollTicking = false;
-        });
-        scrollTicking = true;
-      }
-    },
-    { passive: true }
-  );
+  list.addEventListener("scroll", () => {
+    if (!scrollTicking) {
+      requestAnimationFrame(() => {
+        const max = maxScrollLeftOf(list);
+        const x = list.scrollLeft;
+        if (x < 0 || x > max) clampAndSet(x);
+        else updateArrows();
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  }, { passive: true });
 
-  // --- 左右箭頭（一次兩張） ---
+  // --- 左右箭頭：一次兩張 ---
   function scrollByTwo(dir = 1) {
     const step = getStep();
     if (!step) return;
@@ -210,12 +190,11 @@ articleLists.forEach((list) => {
   prevBtn?.addEventListener("click", () => scrollByTwo(-1));
   nextBtn?.addEventListener("click", () => scrollByTwo(1));
 
-  // 初始化
   updateArrows();
   window.addEventListener("resize", () => updateArrows());
 });
 
-// --- FAQ 展開收合 ---
+// === FAQ 展開收合 ===
 document.querySelectorAll(".faq-question").forEach((button) => {
   button.addEventListener("click", () => {
     const answer = button.nextElementSibling;
@@ -228,7 +207,7 @@ document.querySelectorAll(".faq-question").forEach((button) => {
   });
 });
 
-// --- 浮動官方聯絡 ---
+// === 浮動官方聯絡 ===
 (function () {
   const widget = document.querySelector(".support-float");
   if (!widget) return;
@@ -299,7 +278,7 @@ document.querySelectorAll(".faq-question").forEach((button) => {
   });
 })();
 
-// --- iOS 視窗高度修正 ---
+// === iOS vh 修正 ===
 (function fixMobileVh() {
   function setVhVar() {
     const h =
