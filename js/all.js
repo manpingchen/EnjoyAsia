@@ -68,30 +68,32 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// 首頁文章卡片滑動效果
+// 首頁文章卡片滑動效果（每次兩張）
 const articleLists = document.querySelectorAll(".slide-article-list");
 
 articleLists.forEach((list) => {
   const prevBtn = list.parentElement.querySelector(".scroll li:first-child");
   const nextBtn = list.parentElement.querySelector(".scroll li:last-child");
 
-  let isDown = false;
-  let startX = 0;
-  let startScrollLeft = 0;
-  let lastTouchX = 0;
-
-  function maxScrollLeftOf(el) {
-    return el.scrollWidth - el.clientWidth;
+  // 取得單步距離：單卡寬 + gap（動態）
+  function getStep() {
+    const card = list.querySelector(".article-card");
+    if (!card) return 0;
+    const cardW = card.getBoundingClientRect().width; // 含 padding/border
+    const gap = parseFloat(getComputedStyle(list).gap || "0") || 0;
+    return cardW + gap;
   }
 
-  // 夾住邊界 + 同步箭頭狀態
+  // 最大 scrollLeft
+  const maxScrollLeftOf = (el) => el.scrollWidth - el.clientWidth;
+
+  // 夾住邊界 + 更新箭頭
   function clampAndSet(x) {
     const max = maxScrollLeftOf(list);
     if (x < 0) x = 0;
     if (x > max) x = max;
     if (list.scrollLeft !== x) list.scrollLeft = x;
 
-    // 可見化箭頭狀態（選擇性）
     if (prevBtn) {
       prevBtn.style.opacity = x <= 0 ? 0.4 : 1;
       prevBtn.style.pointerEvents = x <= 0 ? "none" : "";
@@ -102,20 +104,25 @@ articleLists.forEach((list) => {
     }
   }
 
-  // --- 滑鼠拖曳 ---
+  // 吸附到「偶數索引」= 每頁 2 張
+  function snapToTwo() {
+    const step = getStep();
+    if (!step) return;
+    const idxFloat = list.scrollLeft / step; // 目前對齊到第幾張
+    const evenIdx = Math.round(idxFloat / 2) * 2; // 就近偶數索引（…,-2,0,2,4…）
+    const target = evenIdx * step;
+    clampAndSet(target);
+  }
+
+  // 滑鼠拖曳
+  let isDown = false,
+    startX = 0,
+    startScrollLeft = 0;
   list.addEventListener("mousedown", (e) => {
     isDown = true;
     list.classList.add("grabbing");
     startX = e.pageX - list.offsetLeft;
     startScrollLeft = list.scrollLeft;
-  });
-  list.addEventListener("mouseleave", () => {
-    isDown = false;
-    list.classList.remove("grabbing");
-  });
-  list.addEventListener("mouseup", () => {
-    isDown = false;
-    list.classList.remove("grabbing");
   });
   list.addEventListener("mousemove", (e) => {
     if (!isDown) return;
@@ -124,8 +131,20 @@ articleLists.forEach((list) => {
     const walk = (x - startX) * 1.5;
     clampAndSet(startScrollLeft - walk);
   });
+  list.addEventListener("mouseup", () => {
+    isDown = false;
+    list.classList.remove("grabbing");
+    snapToTwo(); // 放開即吸附
+  });
+  list.addEventListener("mouseleave", () => {
+    if (!isDown) return;
+    isDown = false;
+    list.classList.remove("grabbing");
+    snapToTwo();
+  });
 
-  // --- 觸控（手機）---
+  // 觸控（手機）
+  let lastTouchX = 0;
   list.addEventListener(
     "touchstart",
     (e) => {
@@ -146,53 +165,65 @@ articleLists.forEach((list) => {
       lastTouchX = currX;
 
       const max = maxScrollLeftOf(list);
-
-      // ✅ 邊界阻擋（避免 iOS 橡皮筋在邊界外還能拖）
       const atStart = list.scrollLeft <= 0;
       const atEnd = list.scrollLeft >= max;
+      if ((atStart && deltaX > 0) || (atEnd && deltaX < 0)) e.preventDefault(); // iOS 邊界阻擋
 
-      // 往右拖且在起點 → 阻擋
-      if (atStart && deltaX > 0) e.preventDefault();
-      // 往左拖且在終點 → 阻擋
-      if (atEnd && deltaX < 0) e.preventDefault();
-
-      // 依位移更新（使用起點計算更平滑）
       const x = currX - list.offsetLeft;
       const walk = (x - startX) * 1.5;
       clampAndSet(startScrollLeft - walk);
     },
-    { passive: false } // ← 必須為 false 才能 preventDefault()
+    { passive: false }
   );
 
   list.addEventListener(
     "touchend",
     () => {
       isDown = false;
+      snapToTwo(); // 放開即吸附
     },
     { passive: true }
   );
 
-  // --- 慣性滑動期間持續夾住（防止慣性越界顯空白）---
+  // 慣性期間保邊界（必要時吸附）
   let scrollTicking = false;
-  list.addEventListener("scroll", () => {
-    if (!scrollTicking) {
-      requestAnimationFrame(() => {
-        const max = maxScrollLeftOf(list);
-        const x = list.scrollLeft;
-        if (x < 0 || x > max) clampAndSet(x); // 夾回邊界
-        scrollTicking = false;
-      });
-      scrollTicking = true;
-    }
-  }, { passive: true });
+  list.addEventListener(
+    "scroll",
+    () => {
+      if (!scrollTicking) {
+        requestAnimationFrame(() => {
+          const max = maxScrollLeftOf(list);
+          const x = list.scrollLeft;
+          if (x < 0 || x > max) clampAndSet(x);
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
+    },
+    { passive: true }
+  );
 
-  // --- 左右箭頭 ---
-  const cardWidth = 304;
-  prevBtn?.addEventListener("click", () => clampAndSet(list.scrollLeft - cardWidth));
-  nextBtn?.addEventListener("click", () => clampAndSet(list.scrollLeft + cardWidth));
+  // 左右箭頭：一次兩張
+  function scrollByTwo(dir = 1) {
+    const step = getStep();
+    if (!step) return;
+    const target = list.scrollLeft + dir * step * 2;
+    clampAndSet(target);
+    // 進一步微調到兩張對齊（避免四捨五入誤差）
+    snapToTwo();
+  }
+  prevBtn?.addEventListener("click", () => scrollByTwo(-1));
+  nextBtn?.addEventListener("click", () => scrollByTwo(1));
 
   // 初始化
   clampAndSet(list.scrollLeft);
+  // 初始也對齊到偶數索引（例如 0、2…）
+  snapToTwo();
+
+  // 視窗改變時重新吸附
+  window.addEventListener("resize", () => {
+    snapToTwo();
+  });
 });
 
 document.querySelectorAll(".faq-question").forEach((button) => {
