@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.querySelector(".menu-toggle");
   const menuOverlay = document.querySelector(".mobile-menu-overlay");
   const mobileMenu = document.querySelector(".mobile-menu");
-  const closeIcon = document.querySelector(".close-icon");
   const body = document.body;
 
   // 開啟選單
@@ -39,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.querySelector(".category-toggle");
   const menuOverlay = document.querySelector(".mobile-category-overlay");
   const mobileMenu = document.querySelector(".category-menu");
-  const closeIcon = document.querySelector(".close-icon");
   const body = document.body;
 
   // 開啟選單
@@ -80,22 +78,31 @@ articleLists.forEach((list) => {
   let isDown = false;
   let startX = 0;
   let startScrollLeft = 0;
+  let lastTouchX = 0;
 
-  // 依目前位置更新並做邊界夾住
-  function clampAndSet(x) {
-    const max = list.scrollWidth - list.clientWidth;
-    if (x < 0) x = 0;
-    if (x > max) x = max;
-    list.scrollLeft = x;
-
-    // 可選：同步箭頭狀態
-    if (prevBtn) prevBtn.style.opacity = x <= 0 ? 0.4 : 1;
-    if (nextBtn) nextBtn.style.opacity = x >= max ? 0.4 : 1;
-    if (prevBtn) prevBtn.style.pointerEvents = x <= 0 ? "none" : "";
-    if (nextBtn) nextBtn.style.pointerEvents = x >= max ? "none" : "";
+  function maxScrollLeftOf(el) {
+    return el.scrollWidth - el.clientWidth;
   }
 
-  // 滑鼠拖曳
+  // 夾住邊界 + 同步箭頭狀態
+  function clampAndSet(x) {
+    const max = maxScrollLeftOf(list);
+    if (x < 0) x = 0;
+    if (x > max) x = max;
+    if (list.scrollLeft !== x) list.scrollLeft = x;
+
+    // 可見化箭頭狀態（選擇性）
+    if (prevBtn) {
+      prevBtn.style.opacity = x <= 0 ? 0.4 : 1;
+      prevBtn.style.pointerEvents = x <= 0 ? "none" : "";
+    }
+    if (nextBtn) {
+      nextBtn.style.opacity = x >= max ? 0.4 : 1;
+      nextBtn.style.pointerEvents = x >= max ? "none" : "";
+    }
+  }
+
+  // --- 滑鼠拖曳 ---
   list.addEventListener("mousedown", (e) => {
     isDown = true;
     list.classList.add("grabbing");
@@ -118,16 +125,45 @@ articleLists.forEach((list) => {
     clampAndSet(startScrollLeft - walk);
   });
 
-  // 觸控（手機）
+  // --- 觸控（手機）---
   list.addEventListener(
     "touchstart",
     (e) => {
       isDown = true;
-      startX = e.touches[0].pageX - list.offsetLeft;
+      lastTouchX = e.touches[0].pageX;
+      startX = lastTouchX - list.offsetLeft;
       startScrollLeft = list.scrollLeft;
     },
     { passive: true }
   );
+
+  list.addEventListener(
+    "touchmove",
+    (e) => {
+      if (!isDown) return;
+      const currX = e.touches[0].pageX;
+      const deltaX = currX - lastTouchX;
+      lastTouchX = currX;
+
+      const max = maxScrollLeftOf(list);
+
+      // ✅ 邊界阻擋（避免 iOS 橡皮筋在邊界外還能拖）
+      const atStart = list.scrollLeft <= 0;
+      const atEnd = list.scrollLeft >= max;
+
+      // 往右拖且在起點 → 阻擋
+      if (atStart && deltaX > 0) e.preventDefault();
+      // 往左拖且在終點 → 阻擋
+      if (atEnd && deltaX < 0) e.preventDefault();
+
+      // 依位移更新（使用起點計算更平滑）
+      const x = currX - list.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      clampAndSet(startScrollLeft - walk);
+    },
+    { passive: false } // ← 必須為 false 才能 preventDefault()
+  );
+
   list.addEventListener(
     "touchend",
     () => {
@@ -135,23 +171,27 @@ articleLists.forEach((list) => {
     },
     { passive: true }
   );
-  list.addEventListener(
-    "touchmove",
-    (e) => {
-      if (!isDown) return;
-      const x = e.touches[0].pageX - list.offsetLeft;
-      const walk = (x - startX) * 1.5;
-      clampAndSet(startScrollLeft - walk);
-    },
-    { passive: true }
-  );
 
-  // 左右箭頭
+  // --- 慣性滑動期間持續夾住（防止慣性越界顯空白）---
+  let scrollTicking = false;
+  list.addEventListener("scroll", () => {
+    if (!scrollTicking) {
+      requestAnimationFrame(() => {
+        const max = maxScrollLeftOf(list);
+        const x = list.scrollLeft;
+        if (x < 0 || x > max) clampAndSet(x); // 夾回邊界
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  }, { passive: true });
+
+  // --- 左右箭頭 ---
   const cardWidth = 304;
   prevBtn?.addEventListener("click", () => clampAndSet(list.scrollLeft - cardWidth));
   nextBtn?.addEventListener("click", () => clampAndSet(list.scrollLeft + cardWidth));
 
-  // 初始化箭頭狀態
+  // 初始化
   clampAndSet(list.scrollLeft);
 });
 
