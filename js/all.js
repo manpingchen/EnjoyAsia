@@ -118,33 +118,7 @@ articleLists.forEach((list) => {
     clampAndSet(startScrollLeft - walk);
   });
 
-  // 觸控（手機）
-  list.addEventListener(
-    "touchstart",
-    (e) => {
-      isDown = true;
-      startX = e.touches[0].pageX - list.offsetLeft;
-      startScrollLeft = list.scrollLeft;
-    },
-    { passive: true }
-  );
-  list.addEventListener(
-    "touchend",
-    () => {
-      isDown = false;
-    },
-    { passive: true }
-  );
-  list.addEventListener(
-    "touchmove",
-    (e) => {
-      if (!isDown) return;
-      const x = e.touches[0].pageX - list.offsetLeft;
-      const walk = (x - startX) * 1.5;
-      clampAndSet(startScrollLeft - walk);
-    },
-    { passive: true }
-  );
+ 
 
   // 左右箭頭
   const cardWidth = 304;
