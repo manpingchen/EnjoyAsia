@@ -570,8 +570,10 @@ ul.hot-searches-list li a {
   flex: 0 0 calc(100% / 2.75);
 }
 
-.article-card:hover {
-  transform: translateY(-4px);
+@media (hover: hover) and (pointer: fine) {
+  .article-card:hover {
+    transform: translateY(-4px);
+  }
 }
 
 /* 卡片圖片 */
