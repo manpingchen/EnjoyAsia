@@ -535,6 +535,9 @@ ul.hot-searches-list li a {
   margin-right: -5%;
   padding-left: 5%;
   padding-right: 5%;
+
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: 5%;
 }
 
 /* 隱藏捲軸 */
