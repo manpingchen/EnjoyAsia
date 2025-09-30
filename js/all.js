@@ -111,7 +111,9 @@ articleLists.forEach((list) => {
   }
 
   // --- 滑鼠拖曳（自由捲動，不吸附）---
-  let isDown = false, startX = 0, startScrollLeft = 0;
+  let isDown = false,
+    startX = 0,
+    startScrollLeft = 0;
   list.addEventListener("mousedown", (e) => {
     isDown = true;
     list.classList.add("grabbing");
@@ -136,48 +138,54 @@ articleLists.forEach((list) => {
   });
 
   // --- 觸控（自由捲動，不吸附）---
-  let lastTouchX = 0;
-  list.addEventListener("touchstart", (e) => {
-    isDown = true;
-    lastTouchX = e.touches[0].pageX;
-    startX = lastTouchX - list.offsetLeft;
-    startScrollLeft = list.scrollLeft;
-  }, { passive: true });
+  /*
+let lastTouchX = 0;
+list.addEventListener("touchstart", (e) => {
+  isDown = true;
+  lastTouchX = e.touches[0].pageX;
+  startX = lastTouchX - list.offsetLeft;
+  startScrollLeft = list.scrollLeft;
+}, { passive: true });
 
-  list.addEventListener("touchmove", (e) => {
-    if (!isDown) return;
-    const currX = e.touches[0].pageX;
-    const deltaX = currX - lastTouchX;
-    lastTouchX = currX;
+list.addEventListener("touchmove", (e) => {
+  if (!isDown) return;
+  const currX = e.touches[0].pageX;
+  const deltaX = currX - lastTouchX;
+  lastTouchX = currX;
 
-    const max = maxScrollLeftOf(list);
-    const atStart = list.scrollLeft <= EPS;
-    const atEnd = list.scrollLeft >= max - EPS;
-    if ((atStart && deltaX > 0) || (atEnd && deltaX < 0)) e.preventDefault();
+  const max = maxScrollLeftOf(list);
+  const atStart = list.scrollLeft <= EPS;
+  const atEnd = list.scrollLeft >= max - EPS;
+  if ((atStart && deltaX > 0) || (atEnd && deltaX < 0)) e.preventDefault();
 
-    const x = currX - list.offsetLeft;
-    const walk = (x - startX) * 1.5;
-    clampAndSet(startScrollLeft - walk);
-  }, { passive: false });
+  const x = currX - list.offsetLeft;
+  const walk = (x - startX) * 1.5;
+  clampAndSet(startScrollLeft - walk);
+}, { passive: false });
 
-  list.addEventListener("touchend", () => {
-    isDown = false;
-  }, { passive: true });
+list.addEventListener("touchend", () => {
+  isDown = false;
+}, { passive: true });
+*/
 
   // --- 更新箭頭 ---
   let scrollTicking = false;
-  list.addEventListener("scroll", () => {
-    if (!scrollTicking) {
-      requestAnimationFrame(() => {
-        const max = maxScrollLeftOf(list);
-        const x = list.scrollLeft;
-        if (x < 0 || x > max) clampAndSet(x);
-        else updateArrows();
-        scrollTicking = false;
-      });
-      scrollTicking = true;
-    }
-  }, { passive: true });
+  list.addEventListener(
+    "scroll",
+    () => {
+      if (!scrollTicking) {
+        requestAnimationFrame(() => {
+          const max = maxScrollLeftOf(list);
+          const x = list.scrollLeft;
+          if (x < 0 || x > max) clampAndSet(x);
+          else updateArrows();
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
+    },
+    { passive: true }
+  );
 
   // --- 左右箭頭：一次兩張 ---
   function scrollByTwo(dir = 1) {
