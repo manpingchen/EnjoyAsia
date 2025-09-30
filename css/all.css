@@ -558,7 +558,7 @@ ul.hot-searches-list li a {
 
 .article-card {
   width: 100%;
-  scroll-snap-align: start;
+  scroll-snap-align: none;
 
   border-radius: var(--border-radius);
   background: #fff;
