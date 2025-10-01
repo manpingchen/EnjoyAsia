@@ -535,9 +535,9 @@ ul.hot-searches-list li a {
   /* padding-left: 5%;
   padding-right: 5%; */
 
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  /* width: 100vw; */
+  /* margin-left: calc(50% - 50vw); */
+  /* margin-right: calc(50% - 50vw); */
   padding-inline: 0;
   scroll-padding-inline: 0;
   scroll-snap-type: x proximity;
@@ -547,10 +547,8 @@ ul.hot-searches-list li a {
 }
 
 .slide-article-list .article-card:first-child {
-  margin-left: 5%;
 }
 .slide-article-list .article-card:last-child {
-  margin-right: 5%;
 }
 
 /* 隱藏捲軸 */
