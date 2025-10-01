@@ -110,32 +110,32 @@ articleLists.forEach((list) => {
     return cardW + gap;
   }
 
-  // --- 滑鼠拖曳（自由捲動，不吸附）---
-  let isDown = false,
-    startX = 0,
-    startScrollLeft = 0;
-  list.addEventListener("mousedown", (e) => {
-    isDown = true;
-    list.classList.add("grabbing");
-    startX = e.pageX - list.offsetLeft;
-    startScrollLeft = list.scrollLeft;
-  });
-  list.addEventListener("mousemove", (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - list.offsetLeft;
-    const walk = (x - startX) * 1.5;
-    clampAndSet(startScrollLeft - walk);
-  });
-  list.addEventListener("mouseup", () => {
-    isDown = false;
-    list.classList.remove("grabbing");
-  });
-  list.addEventListener("mouseleave", () => {
-    if (!isDown) return;
-    isDown = false;
-    list.classList.remove("grabbing");
-  });
+  // // --- 滑鼠拖曳（自由捲動，不吸附）---
+  // let isDown = false,
+  //   startX = 0,
+  //   startScrollLeft = 0;
+  // list.addEventListener("mousedown", (e) => {
+  //   isDown = true;
+  //   list.classList.add("grabbing");
+  //   startX = e.pageX - list.offsetLeft;
+  //   startScrollLeft = list.scrollLeft;
+  // });
+  // list.addEventListener("mousemove", (e) => {
+  //   if (!isDown) return;
+  //   e.preventDefault();
+  //   const x = e.pageX - list.offsetLeft;
+  //   const walk = (x - startX) * 1.5;
+  //   clampAndSet(startScrollLeft - walk);
+  // });
+  // list.addEventListener("mouseup", () => {
+  //   isDown = false;
+  //   list.classList.remove("grabbing");
+  // });
+  // list.addEventListener("mouseleave", () => {
+  //   if (!isDown) return;
+  //   isDown = false;
+  //   list.classList.remove("grabbing");
+  // });
 
   // --- 觸控（自由捲動，不吸附）---
   let lastTouchX = 0;

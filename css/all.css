@@ -543,7 +543,7 @@ ul.hot-searches-list li a {
   scroll-snap-type: x proximity;
   overscroll-behavior-x: contain;
 
-  touch-action: pan-y;
+  /* touch-action: pan-y; */
 }
 
 .slide-article-list .article-card:first-child {
