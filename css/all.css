@@ -524,24 +524,32 @@ ul.hot-searches-list li a {
 }
 
 .slide-article-list {
-   display: flex !important;
+  display: flex !important;
   gap: 1rem;
   overflow-x: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  overscroll-behavior-x: contain;
 
-  margin-left: -5%;
-  margin-right: -5%;
+  /* margin-left: -5%; */
+  /* margin-right: -5%; */
   /* padding-left: 5%;
   padding-right: 5%; */
 
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-inline: 0;
+  scroll-padding-inline: 0;
   scroll-snap-type: x proximity;
-  scroll-padding-inline: 5%;
+  overscroll-behavior-x: contain;
 }
 
-.slide-article-list .article-card:first-child { margin-left: 5%; }
-.slide-article-list .article-card:last-child  { margin-right: 5%; }
+.slide-article-list .article-card:first-child {
+  margin-left: 5%;
+}
+.slide-article-list .article-card:last-child {
+  margin-right: 5%;
+}
 
 /* 隱藏捲軸 */
 .slide-article-list::-webkit-scrollbar {
