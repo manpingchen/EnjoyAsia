@@ -138,35 +138,46 @@ articleLists.forEach((list) => {
   });
 
   // --- 觸控（自由捲動，不吸附）---
-  /*
-let lastTouchX = 0;
-list.addEventListener("touchstart", (e) => {
-  isDown = true;
-  lastTouchX = e.touches[0].pageX;
-  startX = lastTouchX - list.offsetLeft;
-  startScrollLeft = list.scrollLeft;
-}, { passive: true });
+  let lastTouchX = 0;
+  list.addEventListener(
+    "touchstart",
+    (e) => {
+      isDown = true;
+      lastTouchX = e.touches[0].pageX;
+      startX = lastTouchX - list.offsetLeft;
+      startScrollLeft = list.scrollLeft;
+    },
+    { passive: true }
+  );
 
-list.addEventListener("touchmove", (e) => {
-  if (!isDown) return;
-  const currX = e.touches[0].pageX;
-  const deltaX = currX - lastTouchX;
-  lastTouchX = currX;
+  list.addEventListener(
+    "touchmove",
+    (e) => {
+      if (!isDown) return;
+      const currX = e.touches[0].pageX;
+      const deltaX = currX - lastTouchX;
+      lastTouchX = currX;
 
-  const max = maxScrollLeftOf(list);
-  const atStart = list.scrollLeft <= EPS;
-  const atEnd = list.scrollLeft >= max - EPS;
-  if ((atStart && deltaX > 0) || (atEnd && deltaX < 0)) e.preventDefault();
+      // 只在「邊界且往外拖」時阻止原生彈跳
+      const max = maxScrollLeftOf(list);
+      const atStart = list.scrollLeft <= EPS;
+      const atEnd = list.scrollLeft >= max - EPS;
+      if ((atStart && deltaX > 0) || (atEnd && deltaX < 0)) e.preventDefault();
 
-  const x = currX - list.offsetLeft;
-  const walk = (x - startX) * 1.5;
-  clampAndSet(startScrollLeft - walk);
-}, { passive: false });
+      const x = currX - list.offsetLeft;
+      const walk = (x - startX) * 1.5; // 手感係數
+      clampAndSet(startScrollLeft - walk);
+    },
+    { passive: false }
+  );
 
-list.addEventListener("touchend", () => {
-  isDown = false;
-}, { passive: true });
-*/
+  list.addEventListener(
+    "touchend",
+    () => {
+      isDown = false;
+    },
+    { passive: true }
+  );
 
   // --- 更新箭頭 ---
   let scrollTicking = false;
