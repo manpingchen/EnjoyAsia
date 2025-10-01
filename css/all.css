@@ -546,11 +546,6 @@ ul.hot-searches-list li a {
   /* touch-action: pan-y; */
 }
 
-.slide-article-list .article-card:first-child {
-}
-.slide-article-list .article-card:last-child {
-}
-
 /* 隱藏捲軸 */
 .slide-article-list::-webkit-scrollbar {
   display: none;
