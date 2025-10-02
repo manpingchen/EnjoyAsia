@@ -523,13 +523,17 @@ ul.hot-searches-list li a {
   grid-template-columns: repeat(2, 1fr);
 }
 
+.article-list.slidable {
+  grid-template-columns: unset;
+}
+
 .slide-article-list {
   display: flex !important;
   gap: 1rem;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch; /* iOS 慣性 */
   scroll-snap-type: none; /* 自由停留 */
-  overscroll-behavior-x: contain; 
+  overscroll-behavior-x: contain;
   touch-action: pan-x;
 }
 
