@@ -531,16 +531,16 @@ ul.hot-searches-list li a {
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: none;
 
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  /* margin-left: calc(50% - 50vw); */
+  /* margin-right: calc(50% - 50vw); */
   overscroll-behavior-x: contain;
 }
 
-.slide-article-list::before,
+/* .slide-article-list::before,
 .slide-article-list::after {
   content: "";
   flex: 0 0 0;
-}
+} */
 
 .slide-article-list .article-card {
   flex: 0 0 calc(100% / 2.75);
