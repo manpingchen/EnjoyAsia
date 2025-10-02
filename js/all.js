@@ -81,16 +81,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const lists = document.querySelectorAll(".slide-article-list");
 
   lists.forEach((list) => {
-    const prevBtn = list.parentElement?.querySelector(".scroll li:first-child") || null;
-    const nextBtn = list.parentElement?.querySelector(".scroll li:last-child") || null;
-
-    // 只需要原生滾動：不要自訂拖曳、不要 preventDefault
-    list.style.scrollBehavior = "auto"; // 讓手指拖曳時完全原生
-    // 若你有在 CSS 設定 smooth，可保留，下面會在按鈕時再動態開啟
+    // 以最近的 .articles 作為作用域，避免抓錯別區塊的箭頭
+    const scope = list.closest(".articles") || document;
+    const prevBtn = scope.querySelector(".article-list-header .scroll li:first-child");
+    const nextBtn = scope.querySelector(".article-list-header .scroll li:last-child");
 
     const EPS = 1;
     const maxScrollLeftOf = (el) => Math.max(0, el.scrollWidth - el.clientWidth);
 
+    // 箭頭狀態
     function updateArrows() {
       if (!prevBtn || !nextBtn) return;
       const max = maxScrollLeftOf(list);
@@ -111,28 +110,10 @@ document.addEventListener("DOMContentLoaded", () => {
       nextBtn.style.pointerEvents = atEnd ? "none" : "";
     }
 
-    // 捲動時只更新箭頭；不 clamp，保留原生慣性
+    // 只更新箭頭
     list.addEventListener("scroll", updateArrows, { passive: true });
 
-    // 捲動「結束」時做一次邊界校正（避免 iOS 橡皮筋殘留 > 5vw）
-    let endTimer = 0;
-    const onScrollEnd = () => {
-      const max = maxScrollLeftOf(list);
-      let x = list.scrollLeft;
-      if (x < 0 || x > max) {
-        list.scrollTo({ left: Math.max(0, Math.min(x, max)), behavior: "smooth" });
-      }
-    };
-    list.addEventListener(
-      "scroll",
-      () => {
-        clearTimeout(endTimer);
-        endTimer = setTimeout(onScrollEnd, 90); // 90ms 無事件視為「結束」
-      },
-      { passive: true }
-    );
-
-    // 左右箭頭保留（一次兩張）
+    // 算每次箭頭移動距離（卡片寬 + gap）
     function getStep() {
       const card = list.querySelector(".article-card");
       if (!card) return 0;
@@ -140,25 +121,37 @@ document.addEventListener("DOMContentLoaded", () => {
       const gap = parseFloat(getComputedStyle(list).gap || "0") || 0;
       return cardW + gap;
     }
+
+    // 箭頭：一次兩張（含備援）
     function scrollByTwo(dir = 1) {
       const step = getStep();
-      if (!step) return;
+      const delta = step > 0 ? dir * step * 2 : dir * list.clientWidth * 0.8; // 備援
       const max = maxScrollLeftOf(list);
-      const target = Math.max(0, Math.min(list.scrollLeft + dir * step * 2, max));
-      // 按鈕行為用 smooth，不影響手指拖曳
-      list.style.scrollBehavior = "smooth";
-      list.scrollTo({ left: target, behavior: "smooth" });
-      // 下一次手指拖曳仍是原生
-      setTimeout(() => (list.style.scrollBehavior = "auto"), 300);
-    }
-    prevBtn?.addEventListener("click", () => scrollByTwo(-1));
-    nextBtn?.addEventListener("click", () => scrollByTwo(1));
+      const target = Math.max(0, Math.min(list.scrollLeft + delta, max));
 
+      // 只在按鈕行為使用 smooth；手指拖曳仍走原生
+      list.scrollTo({ left: target, behavior: "smooth" });
+
+      // 保底：極少數環境忽略 smooth 時，強制到位
+      setTimeout(() => {
+        if (Math.abs(list.scrollLeft - target) > 2) list.scrollLeft = target;
+      }, 220);
+    }
+
+    prevBtn?.addEventListener("click", (e) => {
+      e.preventDefault();
+      scrollByTwo(-1);
+    });
+    nextBtn?.addEventListener("click", (e) => {
+      e.preventDefault();
+      scrollByTwo(1);
+    });
+
+    // 初始狀態
     updateArrows();
     window.addEventListener("resize", updateArrows, { passive: true });
   });
 })();
-
 /* =========================
    FAQ 展開收合
 ========================= */
