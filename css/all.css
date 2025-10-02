@@ -541,7 +541,6 @@ ul.hot-searches-list li a {
   /* margin-right: calc(50% - 50vw); */
   /* padding-inline: 0; */
   /* scroll-padding-inline: 0; */
-  scroll-snap-type: x proximity;
   overscroll-behavior-x: contain;
 
   /* touch-action: pan-y; */
