@@ -84,7 +84,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevBtn = list.parentElement?.querySelector(".scroll li:first-child") || null;
     const nextBtn = list.parentElement?.querySelector(".scroll li:last-child") || null;
 
-    const EPS = 1; // 容差
+    // 只需要原生滾動：不要自訂拖曳、不要 preventDefault
+    list.style.scrollBehavior = "auto"; // 讓手指拖曳時完全原生
+    // 若你有在 CSS 設定 smooth，可保留，下面會在按鈕時再動態開啟
+
+    const EPS = 1;
     const maxScrollLeftOf = (el) => Math.max(0, el.scrollWidth - el.clientWidth);
 
     function updateArrows() {
@@ -107,66 +111,28 @@ document.addEventListener("DOMContentLoaded", () => {
       nextBtn.style.pointerEvents = atEnd ? "none" : "";
     }
 
-    // ---------- 自訂拖曳（禁止橡皮筋、邊界即時鉗制） ----------
-    let isDragging = false;
-    let startX = 0;
-    let startLeft = 0;
-    let pointerId = null;
-
-    const onDown = (clientX, e) => {
-      isDragging = true;
-      startX = clientX;
-      startLeft = list.scrollLeft;
-      list.style.scrollBehavior = "auto"; // 拖曳期間關閉平滑，以免干擾
-      list.classList.add("grabbing");
-      if (e && "pointerId" in e && list.setPointerCapture) {
-        pointerId = e.pointerId;
-        try { list.setPointerCapture(pointerId); } catch (_) {}
-      }
-    };
-
-    const onMove = (clientX, e) => {
-      if (!isDragging) return;
-      // 阻止瀏覽器預設橫向橡皮筋
-      if (e && typeof e.preventDefault === "function") e.preventDefault();
-
-      const dx = clientX - startX;
-      let next = startLeft - dx; // 右拖增加 scrollLeft
-      const max = maxScrollLeftOf(list);
-      if (next < 0) next = 0;
-      if (next > max) next = max;
-      if (list.scrollLeft !== next) list.scrollLeft = next;
-      updateArrows();
-    };
-
-    const onUp = () => {
-      if (!isDragging) return;
-      isDragging = false;
-      list.classList.remove("grabbing");
-      list.style.scrollBehavior = "smooth"; // 還原
-    };
-
-    // Pointer 事件（新瀏覽器）
-    list.addEventListener("pointerdown", (e) => {
-      // 僅處理主鍵/觸控
-      if (e.button !== 0 && e.pointerType !== "touch") return;
-      onDown(e.clientX, e);
-    });
-    list.addEventListener("pointermove", (e) => onMove(e.clientX, e), { passive: false });
-    list.addEventListener("pointerup", onUp, { passive: true });
-    list.addEventListener("pointercancel", onUp, { passive: true });
-    list.addEventListener("pointerleave", onUp, { passive: true });
-
-    // Touch 回退（舊 iOS）
-    list.addEventListener("touchstart", (e) => onDown(e.touches[0].clientX, e), { passive: true });
-    list.addEventListener("touchmove", (e) => onMove(e.touches[0].clientX, e), { passive: false });
-    list.addEventListener("touchend", onUp, { passive: true });
-    list.addEventListener("touchcancel", onUp, { passive: true });
-
-    // 滾動時只更新箭頭（不再做 clamp，因為拖曳已經鉗住）
+    // 捲動時只更新箭頭；不 clamp，保留原生慣性
     list.addEventListener("scroll", updateArrows, { passive: true });
 
-    // 左右箭頭：一次兩張
+    // 捲動「結束」時做一次邊界校正（避免 iOS 橡皮筋殘留 > 5vw）
+    let endTimer = 0;
+    const onScrollEnd = () => {
+      const max = maxScrollLeftOf(list);
+      let x = list.scrollLeft;
+      if (x < 0 || x > max) {
+        list.scrollTo({ left: Math.max(0, Math.min(x, max)), behavior: "smooth" });
+      }
+    };
+    list.addEventListener(
+      "scroll",
+      () => {
+        clearTimeout(endTimer);
+        endTimer = setTimeout(onScrollEnd, 90); // 90ms 無事件視為「結束」
+      },
+      { passive: true }
+    );
+
+    // 左右箭頭保留（一次兩張）
     function getStep() {
       const card = list.querySelector(".article-card");
       if (!card) return 0;
@@ -179,18 +145,19 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!step) return;
       const max = maxScrollLeftOf(list);
       const target = Math.max(0, Math.min(list.scrollLeft + dir * step * 2, max));
+      // 按鈕行為用 smooth，不影響手指拖曳
       list.style.scrollBehavior = "smooth";
       list.scrollTo({ left: target, behavior: "smooth" });
+      // 下一次手指拖曳仍是原生
+      setTimeout(() => (list.style.scrollBehavior = "auto"), 300);
     }
     prevBtn?.addEventListener("click", () => scrollByTwo(-1));
     nextBtn?.addEventListener("click", () => scrollByTwo(1));
 
-    // 初始化
     updateArrows();
     window.addEventListener("resize", updateArrows, { passive: true });
   });
 })();
-
 
 /* =========================
    FAQ 展開收合
