@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* =========================
-   首頁文章卡片滑動（自由滑動＋首尾 5vw 鉗制）
+   首頁文章卡片滑動
 ========================= */
 (() => {
   const lists = document.querySelectorAll(".slide-article-list");
@@ -99,25 +99,74 @@ document.addEventListener("DOMContentLoaded", () => {
         nextBtn.style.pointerEvents = "none";
         return;
       }
-
       const atStart = x <= EPS;
       const atEnd = x >= max - EPS;
-
       prevBtn.style.opacity = atStart ? "0.4" : "1";
       prevBtn.style.pointerEvents = atStart ? "none" : "";
       nextBtn.style.opacity = atEnd ? "0.4" : "1";
       nextBtn.style.pointerEvents = atEnd ? "none" : "";
     }
 
-    function clampAndSet(x = list.scrollLeft) {
-      // 把 scrollLeft 限制在 [0, max]，避免被手指拖出 >5vw 的空白
-      const max = maxScrollLeftOf(list);
-      if (x < 0) x = 0;
-      if (x > max) x = max;
-      if (list.scrollLeft !== x) list.scrollLeft = x;
-      updateArrows();
-    }
+    // ---------- 自訂拖曳（禁止橡皮筋、邊界即時鉗制） ----------
+    let isDragging = false;
+    let startX = 0;
+    let startLeft = 0;
+    let pointerId = null;
 
+    const onDown = (clientX, e) => {
+      isDragging = true;
+      startX = clientX;
+      startLeft = list.scrollLeft;
+      list.style.scrollBehavior = "auto"; // 拖曳期間關閉平滑，以免干擾
+      list.classList.add("grabbing");
+      if (e && "pointerId" in e && list.setPointerCapture) {
+        pointerId = e.pointerId;
+        try { list.setPointerCapture(pointerId); } catch (_) {}
+      }
+    };
+
+    const onMove = (clientX, e) => {
+      if (!isDragging) return;
+      // 阻止瀏覽器預設橫向橡皮筋
+      if (e && typeof e.preventDefault === "function") e.preventDefault();
+
+      const dx = clientX - startX;
+      let next = startLeft - dx; // 右拖增加 scrollLeft
+      const max = maxScrollLeftOf(list);
+      if (next < 0) next = 0;
+      if (next > max) next = max;
+      if (list.scrollLeft !== next) list.scrollLeft = next;
+      updateArrows();
+    };
+
+    const onUp = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      list.classList.remove("grabbing");
+      list.style.scrollBehavior = "smooth"; // 還原
+    };
+
+    // Pointer 事件（新瀏覽器）
+    list.addEventListener("pointerdown", (e) => {
+      // 僅處理主鍵/觸控
+      if (e.button !== 0 && e.pointerType !== "touch") return;
+      onDown(e.clientX, e);
+    });
+    list.addEventListener("pointermove", (e) => onMove(e.clientX, e), { passive: false });
+    list.addEventListener("pointerup", onUp, { passive: true });
+    list.addEventListener("pointercancel", onUp, { passive: true });
+    list.addEventListener("pointerleave", onUp, { passive: true });
+
+    // Touch 回退（舊 iOS）
+    list.addEventListener("touchstart", (e) => onDown(e.touches[0].clientX, e), { passive: true });
+    list.addEventListener("touchmove", (e) => onMove(e.touches[0].clientX, e), { passive: false });
+    list.addEventListener("touchend", onUp, { passive: true });
+    list.addEventListener("touchcancel", onUp, { passive: true });
+
+    // 滾動時只更新箭頭（不再做 clamp，因為拖曳已經鉗住）
+    list.addEventListener("scroll", updateArrows, { passive: true });
+
+    // 左右箭頭：一次兩張
     function getStep() {
       const card = list.querySelector(".article-card");
       if (!card) return 0;
@@ -125,34 +174,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const gap = parseFloat(getComputedStyle(list).gap || "0") || 0;
       return cardW + gap;
     }
-
-    // 滾動期間持續校正（含 iOS 動量捲動尾端）
-    let scrollTicking = false;
-    list.addEventListener(
-      "scroll",
-      () => {
-        if (!scrollTicking) {
-          requestAnimationFrame(() => {
-            clampAndSet(); // 不停校正邊界
-            scrollTicking = false;
-          });
-          scrollTicking = true;
-        }
-      },
-      { passive: true }
-    );
-
-    // 手指/指標結束時再鉗一次，避免殘留偏移
-    ["touchend", "touchcancel", "pointerup", "mouseup", "mouseleave"].forEach((evt) => {
-      list.addEventListener(evt, () => clampAndSet(), { passive: true });
-    });
-
-    // 左右箭頭：一次兩張
     function scrollByTwo(dir = 1) {
       const step = getStep();
       if (!step) return;
       const max = maxScrollLeftOf(list);
       const target = Math.max(0, Math.min(list.scrollLeft + dir * step * 2, max));
+      list.style.scrollBehavior = "smooth";
       list.scrollTo({ left: target, behavior: "smooth" });
     }
     prevBtn?.addEventListener("click", () => scrollByTwo(-1));
@@ -163,6 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("resize", updateArrows, { passive: true });
   });
 })();
+
 
 /* =========================
    FAQ 展開收合
