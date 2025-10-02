@@ -534,7 +534,7 @@ ul.hot-searches-list li a {
   -webkit-overflow-scrolling: touch; /* iOS 慣性 */
   scroll-snap-type: none; /* 自由停留 */
   overscroll-behavior-x: contain;
-  touch-action: pan-x;
+  /* touch-action: pan-x; */
 }
 
 .slide-article-list .article-card {
