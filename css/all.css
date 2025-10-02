@@ -572,7 +572,7 @@ ul.hot-searches-list li a {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .article-card:hover {
+  .article-card:not(> .slidable):hover {
     transform: translateY(-4px);
   }
 }
