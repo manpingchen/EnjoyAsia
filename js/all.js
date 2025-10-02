@@ -1,4 +1,6 @@
-// === 手機主選單 ===
+/* =========================
+   手機主選單
+========================= */
 document.addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.querySelector(".menu-toggle");
   const menuOverlay = document.querySelector(".mobile-menu-overlay");
@@ -15,22 +17,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 10);
   });
 
-  menuOverlay.addEventListener("click", (event) => {
-    if (event.target === menuOverlay || event.target.closest(".close-icon")) {
-      mobileMenu.classList.remove("is-active");
-      body.classList.remove("menu-open");
-      mobileMenu.addEventListener(
-        "transitionend",
-        () => {
-          menuOverlay.style.display = "none";
-        },
-        { once: true }
-      );
-    }
-  });
+  menuOverlay.addEventListener(
+    "click",
+    (event) => {
+      if (event.target === menuOverlay || event.target.closest(".close-icon")) {
+        mobileMenu.classList.remove("is-active");
+        body.classList.remove("menu-open");
+        mobileMenu.addEventListener(
+          "transitionend",
+          () => {
+            menuOverlay.style.display = "none";
+          },
+          { once: true }
+        );
+      }
+    },
+    { passive: true }
+  );
 });
 
-// === 手機分類選單 ===
+/* =========================
+   手機分類選單
+========================= */
 document.addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.querySelector(".category-toggle");
   const menuOverlay = document.querySelector(".mobile-category-overlay");
@@ -47,104 +55,118 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 10);
   });
 
-  menuOverlay.addEventListener("click", (event) => {
-    if (event.target === menuOverlay || event.target.closest(".close-icon")) {
-      mobileMenu.classList.remove("is-active");
-      body.classList.remove("menu-open");
-      mobileMenu.addEventListener(
-        "transitionend",
-        () => {
-          menuOverlay.style.display = "none";
-        },
-        { once: true }
-      );
-    }
-  });
-});
-
-// === 首頁文章卡片滑動 ===
-const articleLists = document.querySelectorAll(".slide-article-list");
-
-articleLists.forEach((list) => {
-  const prevBtn = list.parentElement.querySelector(".scroll li:first-child");
-  const nextBtn = list.parentElement.querySelector(".scroll li:last-child");
-
-  const EPS = 1;
-  const maxScrollLeftOf = (el) => el.scrollWidth - el.clientWidth;
-
-  function updateArrows() {
-    if (!prevBtn || !nextBtn) return;
-    const max = maxScrollLeftOf(list);
-    const x = list.scrollLeft;
-
-    if (max <= EPS) {
-      prevBtn.style.opacity = 0.4;
-      nextBtn.style.opacity = 0.4;
-      prevBtn.style.pointerEvents = "none";
-      nextBtn.style.pointerEvents = "none";
-      return;
-    }
-
-    const atStart = x <= EPS;
-    const atEnd = x >= max - EPS;
-
-    prevBtn.style.opacity = atStart ? 0.4 : 1;
-    prevBtn.style.pointerEvents = atStart ? "none" : "";
-    nextBtn.style.opacity = atEnd ? 0.4 : 1;
-    nextBtn.style.pointerEvents = atEnd ? "none" : "";
-  }
-
-  function clampAndSet(x) {
-    const max = maxScrollLeftOf(list);
-    if (x < 0) x = 0;
-    if (x > max) x = max;
-    list.scrollLeft = x;
-    updateArrows();
-  }
-
-  function getStep() {
-    const card = list.querySelector(".article-card");
-    if (!card) return 0;
-    const cardW = card.getBoundingClientRect().width;
-    const gap = parseFloat(getComputedStyle(list).gap || "0") || 0;
-    return cardW + gap;
-  }
-
-  // --- 更新箭頭 ---
-  let scrollTicking = false;
-  list.addEventListener(
-    "scroll",
-    () => {
-      if (!scrollTicking) {
-        requestAnimationFrame(() => {
-          const max = maxScrollLeftOf(list);
-          const x = list.scrollLeft;
-          if (x < 0 || x > max) clampAndSet(x);
-          else updateArrows();
-          scrollTicking = false;
-        });
-        scrollTicking = true;
+  menuOverlay.addEventListener(
+    "click",
+    (event) => {
+      if (event.target === menuOverlay || event.target.closest(".close-icon")) {
+        mobileMenu.classList.remove("is-active");
+        body.classList.remove("menu-open");
+        mobileMenu.addEventListener(
+          "transitionend",
+          () => {
+            menuOverlay.style.display = "none";
+          },
+          { once: true }
+        );
       }
     },
     { passive: true }
   );
-
-  // --- 左右箭頭：一次兩張 ---
-  function scrollByTwo(dir = 1) {
-    const step = getStep();
-    if (!step) return;
-    const max = maxScrollLeftOf(list);
-    const target = Math.max(0, Math.min(list.scrollLeft + dir * step * 2, max));
-    list.scrollTo({ left: target, behavior: "smooth" });
-  }
-  prevBtn?.addEventListener("click", () => scrollByTwo(-1));
-  nextBtn?.addEventListener("click", () => scrollByTwo(1));
-
-  updateArrows();
-  window.addEventListener("resize", () => updateArrows());
 });
 
-// === FAQ 展開收合 ===
+/* =========================
+   首頁文章卡片滑動（自由滑動＋首尾 5vw 鉗制）
+========================= */
+(() => {
+  const lists = document.querySelectorAll(".slide-article-list");
+
+  lists.forEach((list) => {
+    const prevBtn = list.parentElement?.querySelector(".scroll li:first-child") || null;
+    const nextBtn = list.parentElement?.querySelector(".scroll li:last-child") || null;
+
+    const EPS = 1; // 容差
+    const maxScrollLeftOf = (el) => Math.max(0, el.scrollWidth - el.clientWidth);
+
+    function updateArrows() {
+      if (!prevBtn || !nextBtn) return;
+      const max = maxScrollLeftOf(list);
+      const x = list.scrollLeft;
+
+      if (max <= EPS) {
+        prevBtn.style.opacity = "0.4";
+        nextBtn.style.opacity = "0.4";
+        prevBtn.style.pointerEvents = "none";
+        nextBtn.style.pointerEvents = "none";
+        return;
+      }
+
+      const atStart = x <= EPS;
+      const atEnd = x >= max - EPS;
+
+      prevBtn.style.opacity = atStart ? "0.4" : "1";
+      prevBtn.style.pointerEvents = atStart ? "none" : "";
+      nextBtn.style.opacity = atEnd ? "0.4" : "1";
+      nextBtn.style.pointerEvents = atEnd ? "none" : "";
+    }
+
+    function clampAndSet(x = list.scrollLeft) {
+      // 把 scrollLeft 限制在 [0, max]，避免被手指拖出 >5vw 的空白
+      const max = maxScrollLeftOf(list);
+      if (x < 0) x = 0;
+      if (x > max) x = max;
+      if (list.scrollLeft !== x) list.scrollLeft = x;
+      updateArrows();
+    }
+
+    function getStep() {
+      const card = list.querySelector(".article-card");
+      if (!card) return 0;
+      const cardW = card.getBoundingClientRect().width;
+      const gap = parseFloat(getComputedStyle(list).gap || "0") || 0;
+      return cardW + gap;
+    }
+
+    // 滾動期間持續校正（含 iOS 動量捲動尾端）
+    let scrollTicking = false;
+    list.addEventListener(
+      "scroll",
+      () => {
+        if (!scrollTicking) {
+          requestAnimationFrame(() => {
+            clampAndSet(); // 不停校正邊界
+            scrollTicking = false;
+          });
+          scrollTicking = true;
+        }
+      },
+      { passive: true }
+    );
+
+    // 手指/指標結束時再鉗一次，避免殘留偏移
+    ["touchend", "touchcancel", "pointerup", "mouseup", "mouseleave"].forEach((evt) => {
+      list.addEventListener(evt, () => clampAndSet(), { passive: true });
+    });
+
+    // 左右箭頭：一次兩張
+    function scrollByTwo(dir = 1) {
+      const step = getStep();
+      if (!step) return;
+      const max = maxScrollLeftOf(list);
+      const target = Math.max(0, Math.min(list.scrollLeft + dir * step * 2, max));
+      list.scrollTo({ left: target, behavior: "smooth" });
+    }
+    prevBtn?.addEventListener("click", () => scrollByTwo(-1));
+    nextBtn?.addEventListener("click", () => scrollByTwo(1));
+
+    // 初始化
+    updateArrows();
+    window.addEventListener("resize", updateArrows, { passive: true });
+  });
+})();
+
+/* =========================
+   FAQ 展開收合
+========================= */
 document.querySelectorAll(".faq-question").forEach((button) => {
   button.addEventListener("click", () => {
     const answer = button.nextElementSibling;
@@ -157,10 +179,13 @@ document.querySelectorAll(".faq-question").forEach((button) => {
   });
 });
 
-// === 浮動官方聯絡 ===
-(function () {
+/* =========================
+   浮動官方聯絡（中間對齊放大）
+========================= */
+(() => {
   const widget = document.querySelector(".support-float");
   if (!widget) return;
+
   const inner = widget.querySelector(".support-inner");
   const items = Array.from(widget.querySelectorAll(".support-item"));
 
@@ -196,22 +221,20 @@ document.querySelectorAll(".faq-question").forEach((button) => {
     }
   }
 
-  setTimeout(() => {
-    const idx = findClosestIndex();
-    setActive(idx);
-  }, 50);
+  // 初始標記
+  setTimeout(() => setActive(findClosestIndex()), 50);
 
   inner.addEventListener("scroll", onScroll, { passive: true });
 
+  // 點擊跳轉
   items.forEach((it) => {
     it.addEventListener("click", () => {
       const href = it.dataset.href;
-      if (href) {
-        if (href.startsWith("tel:")) {
-          window.location.href = href;
-        } else {
-          window.open(href, "_blank");
-        }
+      if (!href) return;
+      if (href.startsWith("tel:")) {
+        window.location.href = href;
+      } else {
+        window.open(href, "_blank");
       }
     });
     it.addEventListener("keydown", (ev) => {
@@ -222,13 +245,18 @@ document.querySelectorAll(".faq-question").forEach((button) => {
     });
   });
 
-  window.addEventListener("resize", () => {
-    const idx = findClosestIndex();
-    setActive(idx);
-  });
+  window.addEventListener(
+    "resize",
+    () => {
+      setActive(findClosestIndex());
+    },
+    { passive: true }
+  );
 })();
 
-// === iOS vh 修正 ===
+/* =========================
+   iOS 100vh 修正
+========================= */
 (function fixMobileVh() {
   function setVhVar() {
     const h =

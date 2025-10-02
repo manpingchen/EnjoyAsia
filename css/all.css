@@ -525,25 +525,25 @@ ul.hot-searches-list li a {
 
 .slide-article-list {
   display: flex !important;
-  gap: 1rem;
+  gap: 5%;
   overflow-x: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: none;
 
-  /* margin-left: -5%; */
-  /* margin-right: -5%; */
-  /* padding-left: 5%;
-  padding-right: 5%; */
-
-  /* width: 100vw; */
-  /* margin-left: calc(50% - 50vw); */
-  /* margin-right: calc(50% - 50vw); */
-  /* padding-inline: 0; */
-  /* scroll-padding-inline: 0; */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
   overscroll-behavior-x: contain;
+}
 
-  /* touch-action: pan-y; */
+.slide-article-list::before,
+.slide-article-list::after {
+  content: "";
+  flex: 0 0 0;
+}
+
+.slide-article-list .article-card {
+  flex: 0 0 calc(100% / 2.75);
 }
 
 /* 隱藏捲軸 */
