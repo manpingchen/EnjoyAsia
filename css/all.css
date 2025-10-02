@@ -529,6 +529,7 @@ ul.hot-searches-list li a {
   overflow-x: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  scroll-snap-type: none;
 
   /* margin-left: -5%; */
   /* margin-right: -5%; */
@@ -538,8 +539,8 @@ ul.hot-searches-list li a {
   /* width: 100vw; */
   /* margin-left: calc(50% - 50vw); */
   /* margin-right: calc(50% - 50vw); */
-  padding-inline: 0;
-  scroll-padding-inline: 0;
+  /* padding-inline: 0; */
+  /* scroll-padding-inline: 0; */
   scroll-snap-type: x proximity;
   overscroll-behavior-x: contain;
 
