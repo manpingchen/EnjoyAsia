@@ -287,7 +287,7 @@ ul.categories-list {
   padding: 10%;
 }
 
-ul.categories-list li {
+ul.categories-list li a {
   display: flex;
   align-items: center;
   justify-content: center;
