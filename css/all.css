@@ -20,6 +20,7 @@
   /* 背景色系 */
   --badge-background: #fff9e6;
   --tags-background: #f0ebe5;
+  --article-menu-background: #f9f7f4;
 
   /* 灰階色系 */
   --gray-100: #f8f9fa;
@@ -1227,4 +1228,54 @@ main.article-page {
     -ms-overflow-style: none; /* IE/Edge */
     scrollbar-width: none; /* Firefox */
   }
+}
+
+/* --------------------------------------
+   文章目錄
+-------------------------------------- */
+
+.article-menu-wrap {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: var(--article-menu-background);
+}
+
+.article-menu-box-btn {
+  background: var(--primary-color);
+  padding: 0.5rem;
+  border: 0;
+  width: 100%;
+  color: white;
+}
+
+.article-menu-box {
+  padding: 1rem;
+}
+
+.article-menu-box > ol {
+  display: flex;
+  flex-direction: column;
+  list-style: disc inside;
+  color: var(--primary-color);
+}
+
+.article-menu-box ol a {
+  color: var(--primary-color);
+}
+
+.article-menu-box > ol li {
+  padding: 0.5rem;
+}
+
+.article-menu-box > ol li:not(:last-child) {
+  border-bottom: 1px dotted var(--primary-color-lighter);
+}
+
+.article-menu-box > ol > li > ol {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 0 0rem 1.5rem;
+}
+.article-menu-box > ol > li > ol > li > a {
+  padding: 0.5rem;
 }
