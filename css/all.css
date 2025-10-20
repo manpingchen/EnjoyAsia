@@ -1276,6 +1276,45 @@ main.article-page {
   flex-direction: column;
   margin: 0.5rem 0 0rem 1.5rem;
 }
+
 .article-menu-box > ol > li > ol > li > a {
   padding: 0.5rem;
+}
+
+/* --------------------------------------
+   分頁
+-------------------------------------- */
+
+ul.pagination {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+ul.pagination li {
+  border-radius: 0.15rem;
+}
+
+ul.pagination li > a,
+ul.pagination li > span {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ul.pagination li.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+ul.pagination li:not(.active) a {
+  color: var(--primary-color);
+}
+
+ul.pagination li:not(.active):hover {
+  background: var(--primary-color-lightest);
 }
