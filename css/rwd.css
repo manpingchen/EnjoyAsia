@@ -205,6 +205,10 @@ footer {
     display: flex;
   }
 
+  .hot-search-flag {
+    width: 23px;
+  }
+
   .banner {
     display: flex;
   }

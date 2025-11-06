@@ -285,17 +285,23 @@ ul.categories-list {
   gap: 1rem;
   overflow: auto;
   width: 100%;
-  padding: 10%;
+  padding: 5% 10%;
 }
 
 ul.categories-list li a {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   flex-direction: column;
   padding: 1rem;
   gap: 0.5rem;
   font-weight: 600;
+  height: 100%;
+}
+
+ul.categories-list li a img.hot-search-flag {
+  margin-top: 0.65rem;
+  margin-bottom: 0.8rem;
 }
 
 ul.categories-list li span.material-symbols-outlined {
@@ -377,6 +383,11 @@ ul.hot-searches-list li a {
   gap: 0.25rem;
   align-items: center;
   justify-content: center;
+}
+
+.hot-search-flag {
+  width: 30px;
+  border: 1px solid #ccc;
 }
 
 .banner {
@@ -782,6 +793,7 @@ ul.hot-searches-list li a {
   padding-inline-start: 5%;
   padding-inline-end: 1rem;
   list-style: none;
+  align-items: end;
 }
 
 /* 隱藏捲軸（各瀏覽器） */
@@ -802,21 +814,30 @@ ul.hot-searches-list li a {
 .hot-categories-list li {
   flex: 0 0 auto;
   scroll-snap-align: start;
-  padding: 0.5rem;
-  color: var(--gray-800, #343a40);
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
   user-select: none;
 }
 
+.hot-categories-list li a {
+  padding: 0.5rem;
+  color: var(--gray-800, #343a40);
+  gap: 0.5rem;
+  align-items: center;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
 .hot-categories-list li:focus,
 .hot-categories-list li:focus-visible {
   outline: none;
+}
+
+.hot-categories-list li a img.hot-search-flag {
+  margin-top: 0.8rem;
+  margin-bottom: 0.65rem;
 }
 
 .hot-categories-all {
